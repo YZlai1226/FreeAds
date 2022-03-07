@@ -88,7 +88,7 @@
 
                               <button type="submit" class="btn btn-primary">
 
-                                  Login and say hello
+                                  say hello
 
                               </button>
 
