@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\categoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Index page ...
+
 Route::get('/', function () {
     return view('index');
 });
+
+
+//admin_category ...
+
+Route::get('/admin', [categoryController::class, 'ShowCategories']);
+// Route::get('/admin', [categoryController::class, 'InsertForm']);
+Route::get('category_create', [categoryController::class, 'InsertForm']);
+Route::post('/admin', [categoryController::class, 'AddNewCategory']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
