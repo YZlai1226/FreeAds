@@ -11,21 +11,43 @@ use App\Http\Controllers\Controller;
 class categoryController extends Controller
 {
     public function ShowCategories() {
+        // error_log("INSIDE ShowCategory");
         $category = categories::getCategoryData();
-        return view ('admin')->with('category', $category);
+        return view('admin')->with('category', $category);
     }
 
     public function InsertForm() {
+        // error_log("INSIDE InsertForm");
         return view('category_create');
     }
 
     public function AddNewCategory(Request $request) {
+        // error_log("INSIDE AddNewCategory");
         $name = $request->input('categoryName');
-        // $date = 'CURDATE()';
         $data = array('name' => $name);
         DB::table('categories')->insert($data);
-        if ($request->add_category == 'Add') {
-            return view('admin');
-        }
+        return redirect()->route('admin');
     }
+
+    public function DeleteCategory($categoryId) {
+        // error_log("INSIDE DeleteCategory");
+        // error_log('categoryId is : ' . $categoryId);
+        $category = Categories::find($categoryId);
+        $category->delete();
+        return redirect()->route('admin');
+        // return $this->ShowCategories();
+    }
+
+    public function EditForm($categoryId) {
+        // error_log("INSIDE EditForm");
+        $category = Categories::find($categoryId);
+        return view('category_edit')->with('category', $category);
+    }
+
+    public function EditCategory(Request $request) {
+        $name = $request->input('categoryName');
+        DB::table('categories')->update(array('name' => $name));
+        return redirect()->route('admin');
+    }
+
 }

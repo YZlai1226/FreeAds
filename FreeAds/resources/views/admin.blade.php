@@ -30,7 +30,19 @@
 
                 <td>{{$value->name}} </td>
 
-                <td> </td>
+                <td>
+                    <!-- <form action="/category_edit" method="post"> -->
+                    <a href="/admin/edit/{{$value->id}}">
+                        <button type="submit" name="edit_category" value="edit category" class="btn btn-primary">Edit</button>
+                    </a>
+                    <!-- </form> -->
+                    <a href="/admin/delete/{{$value->id}}">
+                        <button type="submit" name="delete_category" value="delete category" class="btn btn-primary">Delete</button>
+                    </a>
+                    <!-- <form action="/admin" method="post">
+                        <button type="submit" name="delete_category" value="delete category" class="btn btn-primary">Delete</button>
+                    </form> -->
+                </td>
 
             </tr>
             @endforeach
@@ -39,9 +51,9 @@
 
     </table>
 
-    <a href='/'>Edit</a>
-    <a href='/'>Delete</a>
-    <a href='/category_create'>Add New</a>
+    <!-- <a href='/category_edit'>Edit</a>
+    <a href='/admin'>Delete</a> -->
+    <a href='/admin/addForm'>Add New</a>
     <a href='/'>HOME</a>
 </body>
 

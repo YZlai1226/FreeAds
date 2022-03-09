@@ -23,10 +23,15 @@ Route::get('/', function () {
 
 //admin_category ...
 
-Route::get('/admin', [categoryController::class, 'ShowCategories']);
+Route::get('/admin', [categoryController::class, 'ShowCategories'])->name('admin');
 // Route::get('/admin', [categoryController::class, 'InsertForm']);
-Route::get('category_create', [categoryController::class, 'InsertForm']);
-Route::post('/admin', [categoryController::class, 'AddNewCategory']);
+Route::get('/admin/addForm', [categoryController::class, 'InsertForm']);
+Route::post('/admin/addCategory', [categoryController::class, 'AddNewCategory']);
+Route::get('/admin/delete/{categoryId}', [categoryController::class, 'DeleteCategory']);
+Route::get('/admin/edit/{categoryId}', [categoryController::class, 'EditForm']);
+Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
+// Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
+
 
 
 Route::get('/dashboard', function () {
