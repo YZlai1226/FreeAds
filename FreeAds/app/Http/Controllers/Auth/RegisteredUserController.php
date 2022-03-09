@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Exceptions;
 
 class RegisteredUserController extends Controller
 {
@@ -47,7 +48,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // try {
         event(new Registered($user));
+        //   }  catch (App\Exceptions $e) {
+        //         echo $e;
+        //     }
+
 
         Auth::login($user);
 

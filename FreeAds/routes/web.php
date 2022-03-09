@@ -3,6 +3,10 @@
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\categoryController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use App\Http\Controllers\IndexController;
+
 use App\Http\Controllers\adsController;
 
 /*
@@ -16,11 +20,31 @@ use App\Http\Controllers\adsController;
 |
 */
 
-//Index page ...
+Route::get('/', IndexController::class);
 
-Route::get('/', function () {
-    return view('index');
-});
+Auth::routes(['verify' => true]);
+
+require __DIR__.'/auth.php';
+
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::middleware('verified')->group(function () {
 
 
 //admin_category ...
@@ -42,4 +66,4 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+});
