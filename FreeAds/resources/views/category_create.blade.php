@@ -10,6 +10,7 @@
 
 <body>
     <form action="/admin/addCategory" method="post" class="form-group">
+        @csrf
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <label for="name">Name: </label>
         <input type="text" class="form-control" placeholder="name of the category..." name="categoryName">
