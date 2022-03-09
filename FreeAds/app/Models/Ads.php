@@ -10,8 +10,19 @@ class Ads extends Model
 {
     use HasFactory;
 
-    public static function getAddsData() {
+    public static function getAddsData()
+    {
         $value = DB::table('ads')->where('admin_verified', '0')->orderBy("id")->get();
+        return $value;
+    }
+
+    public static function getNewestAds()
+    {
+        $value = DB::table('ads')
+            ->where('admin_verified', '1')
+            ->orderBy('id', 'desc')
+            ->limit(5)
+            ->get();
         return $value;
     }
 }

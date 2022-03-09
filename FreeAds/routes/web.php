@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\IndexController;
-
 use App\Http\Controllers\adsController;
 
 /*
@@ -20,7 +19,10 @@ use App\Http\Controllers\adsController;
 |
 */
 
-Route::get('/', IndexController::class);
+Route::get('/', [IndexController::class, 'showNewestAds']);
+
+
+
 
 Auth::routes(['verify' => true]);
 
