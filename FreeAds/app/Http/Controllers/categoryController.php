@@ -7,14 +7,14 @@ use App\Models\Categories;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\adminController;
 
 class categoryController extends Controller
 {
-    public function ShowCategories() {
-        // error_log("INSIDE ShowCategory");
-        $category = categories::getCategoryData();
-        return view('admin')->with('category', $category);
-    }
+    // public function ShowCategories() {
+    //     $category = Categories::getCategoryData();
+    //     return view('admin')->with('category', $category);
+    // }
 
     public function InsertForm() {
         // error_log("INSIDE InsertForm");
@@ -45,8 +45,9 @@ class categoryController extends Controller
     }
 
     public function EditCategory(Request $request) {
+        $categoryId = $request->input('categoryId');
         $name = $request->input('categoryName');
-        DB::table('categories')->update(array('name' => $name));
+        DB::table('categories')->where('id', $categoryId )->update(array('name' => $name));
         return redirect()->route('admin');
     }
 

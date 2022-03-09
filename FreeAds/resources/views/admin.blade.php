@@ -9,6 +9,68 @@
 </head>
 
 <body>
+
+    <table class="table table-hover">
+
+        <thead>
+
+            <th>id</th>
+
+            <th>picture(s)</th>
+
+            <th>title</th>
+
+            <th>category</th>
+
+            <th>description</th>
+
+            <th>location</th>
+
+            <th>price</th>
+
+            <th>action</th>
+
+        </thead>
+
+        <tbody>
+            @foreach($ads as $valueAd)
+
+            <tr>
+
+                <td>{{$valueAd->id}} </td>
+
+                <td>{{$valueAd->picture}} </td>
+
+                <td>{{$valueAd->title}} </td>
+
+                <td>{{$valueAd->category}} </td>
+
+                <td>{{$valueAd->description}} </td>
+
+                <td>{{$valueAd->location}} </td>
+
+                <td>{{$valueAd->price}} </td>
+
+                <td> </td>
+
+                <td>
+                    <a href="/admin/verify/{{$valueAd->id}}">
+                        <button type="submit" name="verify_ads" value="verify ads" class="btn btn-primary">Verify</button>
+                    </a>
+                    <!-- <form action="/admin" method="post">
+                <button type="submit" name="delete_category" value="delete category" class="btn btn-primary">Delete</button>
+            </form> -->
+                </td>
+
+            </tr>
+            @endforeach
+
+        </tbody>
+
+    </table>
+
+    <!-- ===================================== category table ======================================= -->
+
     <table class="table table-hover">
 
         <thead>
@@ -51,9 +113,9 @@
 
     </table>
 
-    <!-- <a href='/category_edit'>Edit</a>
-    <a href='/admin'>Delete</a> -->
-    <a href='/admin/addForm'>Add New</a>
+
+
+    <a href='/admin/adForm'>Add New</a>
     <a href='/'>HOME</a>
 </body>
 
