@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 class Categories extends Model
 {
     public $timestamps = true;
-    protected $fillable = ['name'];
     use HasFactory;
     protected $fillable = ['name'];
     public static function getCategoryData() {
