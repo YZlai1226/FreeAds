@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Ads extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['admin_verified'];
     public static function getAddsData()
     {
         $value = DB::table('ads')->where('admin_verified', '0')->orderBy("id")->get();
