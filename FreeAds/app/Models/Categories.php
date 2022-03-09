@@ -11,6 +11,7 @@ class Categories extends Model
     public $timestamps = true;
     protected $fillable = ['name'];
     use HasFactory;
+    protected $fillable = ['name'];
     public static function getCategoryData() {
         $value=DB::table('categories')->orderBy('id')->get();
         return $value;
