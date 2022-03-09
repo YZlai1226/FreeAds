@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class Categories extends Model
 {
+    public $timestamps = true;
+    protected $fillable = ['name'];
     use HasFactory;
     public static function getCategoryData() {
         $value=DB::table('categories')->orderBy('id')->get();

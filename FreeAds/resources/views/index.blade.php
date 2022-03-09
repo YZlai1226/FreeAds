@@ -30,7 +30,7 @@
     </div>
     </div>
 
-    <div class="show_ads">
+    <!-- <div class="show_ads">
         @switch($i)
         @case(1)
         Premier cas
@@ -43,7 +43,7 @@
         @default
         Cas par défaut
         @endswitch
-    </div>
+    </div> -->
 </body>
 @endsection
 

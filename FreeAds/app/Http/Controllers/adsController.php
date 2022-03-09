@@ -11,6 +11,7 @@ use App\Models\Categories;
 
 class adsController extends Controller
 {
+
     public function VerifyAd($adId) {
         $ad = Ads::find($adId);
         DB::table('ads')->where('id', $adId )->update(array('admin_verified' => '1'));
