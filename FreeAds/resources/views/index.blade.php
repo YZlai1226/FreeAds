@@ -37,6 +37,7 @@
     </div>
 
 <form method="post" action="/category">
+    @csrf
     <label class="category-select"> Choose a category:</label>
     <select name="categories" id="category-select">
         <option value="">--Please choose an option--</option>

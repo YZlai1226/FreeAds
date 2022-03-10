@@ -25,7 +25,7 @@ class IndexController extends Controller
         // $categories = Ads::filter($Request)->get();
 
         // error_log("value 2 is:" . $Request);
-        $category = $request->input('valueCategory');
+        $category = $request->input('categories');
         error_log("value categoriy :" . $category);
         $Ads = Ads::getAdsbyCategorie($category);
         // error_log("value 3 is:" . $categories);
