@@ -47,8 +47,9 @@ Route::get('/Category/{valueCategory}', [IndexController::class, 'showAdsByCateg
 //     return back()->with('message', 'Verification link sent!');
 // })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-// Route::middleware('verified')->group(function () {
+Route::middleware('verified')->group(function () {
 
+    
 
 //admin_category ...
 
@@ -64,8 +65,8 @@ Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
 // Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+});
