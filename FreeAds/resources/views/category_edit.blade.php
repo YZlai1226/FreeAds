@@ -10,6 +10,7 @@
 
 <body>
     <form action="/admin/editConfirm" method="post" class="form-group">
+    @csrf
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <input type="hidden" class="form-control" value="{{$category->id}}" name="categoryId" hidden>
         <label for="name">Name: </label>

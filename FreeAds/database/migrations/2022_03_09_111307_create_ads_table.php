@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('price');
             $table->string('location');
             $table->boolean('admin_verified')->default('0');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

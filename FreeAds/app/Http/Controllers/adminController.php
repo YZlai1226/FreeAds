@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 class adminController extends Controller
 {
+    public $timestamps = true;
     public function showAdsAndCategories() {
         $ads = Ads::getAddsData();
         $category = Categories::getCategoryData();

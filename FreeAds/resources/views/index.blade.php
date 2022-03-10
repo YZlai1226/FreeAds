@@ -36,19 +36,20 @@
         </div>
     </div>
 
-    
-        <label class="category-select"> Choose a category:</label>
-        <select name="categories" id="category-select">
-            <option value="">--Please choose an option--</option>
+<form method="post" action="/category">
+    <label class="category-select"> Choose a category:</label>
+    <select name="categories" id="category-select">
+        <option value="">--Please choose an option--</option>
 
-            @foreach($categories as $valueCategory)
+        @foreach($categories as $valueCategory)
 
-            <option>{{$valueCategory->name}}</option>
-            @endforeach
-        </select>
-        <a href="/Category/{{$valueCategory->name}}">
-                        <button type="submit" name="categories_filter" value="categories_filter" class="btn_categories_filter">Filter</button>
-                    </a>
+        <option value="{{$valueCategory->name}}">{{$valueCategory->name}}</option>
+        @endforeach
+    </select>
+    <!-- <a href="/category"> -->
+        <input type="submit" name="categories_filter" value="Filter" class="btn_categories_filter"></input>
+    <!-- </a> -->
+</form>
 
 
 
@@ -76,8 +77,6 @@
 
         </tr>
         @endforeach
-
-
 
     </table>
 

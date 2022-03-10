@@ -19,8 +19,9 @@ use App\Http\Controllers\adsController;
 |
 */
 
-Route::get('/', [IndexController::class, 'showNewestAds']);
+Route::get('/', [IndexController::class, 'showNewestAds'])->name('index');
 
+Route::post('/category', [IndexController::class, 'showAdsByCategory'])->name('indexCat');
 
 
 
@@ -49,18 +50,18 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::middleware('verified')->group(function () {
 
 
-//admin_category ...
+// admin_category ...
 
 Route::get('/admin', [adminController::class, 'showAdsAndCategories'])->name('admin');
 
-// Route::get('/admin', [categoryController::class, 'InsertForm']);
+Route::get('/admin', [categoryController::class, 'InsertForm']);
 Route::get('/admin/adForm', [categoryController::class, 'InsertForm']);
 Route::post('/admin/addCategory', [categoryController::class, 'AddNewCategory']);
 Route::get('/admin/delete/{categoryId}', [categoryController::class, 'DeleteCategory']);
 Route::get('/admin/edit/{categoryId}', [categoryController::class, 'EditForm']);
 Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
-// Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
+Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 
 
 
