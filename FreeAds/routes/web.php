@@ -19,39 +19,38 @@ use App\Http\Controllers\adsController;
 |
 */
 
-// Route::get('/', [IndexController::class, 'showNewestAds']);
+Route::get('/', [IndexController::class, 'showNewestAds'])->name('index');
 
-Route::get('/Category/{valueCategory}', [IndexController::class, 'showAdsByCategory']);
-
-
-
-// Auth::routes(['verify' => true]);
-
-// require __DIR__.'/auth.php';
+Route::post('/index/droppingList', [IndexController::class, 'showAdsByCategory']);
 
 
-// Route::get('/email/verify', function () {
-//     return view('auth.verify-email');
-// })->middleware('auth')->name('verification.notice');
+Auth::routes(['verify' => true]);
+
+require __DIR__.'/auth.php';
 
 
-// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-//     $request->fulfill();
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
     
-//     return redirect('/home');
-// })->middleware(['auth', 'signed'])->name('verification.verify');
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
-// Route::post('/email/verification-notification', function (Request $request) {
-//     $request->user()->sendEmailVerificationNotification();
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
     
-//     return back()->with('message', 'Verification link sent!');
-// })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::middleware('verified')->group(function () {
 
     
 
-//admin_category ...
+// admin_category ...
 
 Route::get('/admin', [adminController::class, 'showAdsAndCategories'])->name('admin');
 
@@ -62,7 +61,7 @@ Route::get('/admin/delete/{categoryId}', [categoryController::class, 'DeleteCate
 Route::get('/admin/edit/{categoryId}', [categoryController::class, 'EditForm']);
 Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
-// Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
+Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 
 
 Route::get('/dashboard', function () {
@@ -70,3 +69,4 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 });
+

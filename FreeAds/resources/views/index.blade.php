@@ -36,20 +36,21 @@
         </div>
     </div>
 
-
-
+<form method="post" action="/index/droppingList">
+@csrf
     <label class="category-select"> Choose a category:</label>
     <select name="categories" id="category-select">
         <option value="">--Please choose an option--</option>
 
         @foreach($categories as $valueCategory)
 
-        <option>{{$valueCategory->name}}</option>
+        <option value="{{$valueCategory->name}}">{{$valueCategory->name}}</option>
         @endforeach
     </select>
-    <a href="/Category/{{$valueCategory->name}}">
-        <button type="submit" name="categories_filter" value="categories_filter" class="btn_categories_filter">Filter</button>
-    </a>
+    <!-- <a href="/category"> -->
+        <input type="submit" name="categories_filter" value="Filter" class="btn_categories_filter"></input>
+    <!-- </a> -->
+</form>
 
 
 
@@ -61,7 +62,7 @@
             <!-- <td>{{$valueAd->id}} </td> -->
 
             <td>
-                <img src="{{ asset($valueAd->picture)}}" alt="ad image" width="300">
+                <img src="{{ asset('images/'.$valueAd->picture) }}" alt="ad image" width="300">
             </td>
 
             <td>
@@ -77,8 +78,6 @@
 
         </tr>
         @endforeach
-
-
 
     </table>
 

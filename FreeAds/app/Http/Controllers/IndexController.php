@@ -14,14 +14,25 @@ class IndexController extends Controller
         $Ads = Ads::getNewestAds();
         $categories = Categories::getCategoryData();
         // var_dump($categories);
-
+        // error_log("value is:" . $categories);
         return view('index', ['Ads' => $Ads], ['categories' => $categories]);
     }
 
+// public function store
 
-    public function showAdsByCategory($valueCategory)
+    public function showAdsByCategory(Request $request)
     {
-        $categories = Ads::getAdsbyCategorie($valueCategory);
-        return view('index', ['categories' => $categories]);
+        // $categories = Ads::filter($Request)->get();
+
+        $category = $request->input('categories');
+        error_log("value 2 is:" . $category);
+        $Ads = Ads::getAdsbyCategorie($category);
+
+        $categories = Categories::getCategoryData();
+        // error_log("value 3 is:" . $categories);
+        // return redirect()->route('index');
+
+        return view('index', ['Ads' => $Ads], ['categories' => $categories]);
+
     }
 }
