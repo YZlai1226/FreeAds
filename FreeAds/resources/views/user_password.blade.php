@@ -5,11 +5,11 @@
 
 
         <label for="password">new password:</label><br>
-        <input type="text" name="password" class="password" minlength="8" required><br><br>
+        <input type="password" name="password" class="password" minlength="8" required><br><br>
 
 
         <label for="password_confirmation">new password confirmation:</label><br>
-        <input type="text" name="password_confirmation" class="password_confirmation" minlength="8" required ><br><br>
+        <input type="password" name="password_confirmation" class="password_confirmation" minlength="8" required ><br><br>
 
 
         <button type="submit" name="edit_user" value="edit user" class="btn btn-primary">Submit</button>

@@ -46,13 +46,9 @@
             </td>
         </tr>
         @endforeach
-
-
-
     </table>
 
-</html>
-
+    <a href='/user/adForm'>Add New</a>
 </body>
 
 </html>
