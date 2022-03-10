@@ -21,6 +21,7 @@ use App\Http\Controllers\adsController;
 
 Route::get('/', [IndexController::class, 'showNewestAds']);
 
+Route::get('/Category/{valueCategory}', [IndexController::class, 'showAdsByCategory']);
 
 
 

@@ -51,8 +51,6 @@
 
                 <td>{{$valueAd->price}} </td>
 
-                <td> </td>
-
                 <td>
                     <a href="/admin/verify/{{$valueAd->id}}">
                         <button type="submit" name="verify_ads" value="verify ads" class="btn btn-primary">Verify</button>
