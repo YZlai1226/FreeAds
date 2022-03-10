@@ -36,5 +36,14 @@ class Ads extends Model
         return $value;
     }
 
+
+    public static function getAdsbyUser($userID)
+    {
+        $value = DB::table('ads')
+            ->where('user_id', $userID)
+            ->get();
+        return $value;
+    }
+
  
 }

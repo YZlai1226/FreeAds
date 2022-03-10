@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\adsController;
+use App\Http\Controllers\UserAdsController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +72,19 @@ Route::get('/dashboard', function () {
 
 });
 
+//user dashboard ...
+
+Route::get('/user/{userId}', [UserController::class, 'showUser']);
+
+Route::get('/user/userEdit/{userID}', [UserController::class, 'EditUser']);
+Route::post('/user/editsubmit', [UserController::class, 'EditConfirm']);
+
+Route::get('/user/user_password/{userID}', [UserController::class, 'EditpasswordUser']);
+Route::post('/user/editpasswordsubmit', [UserController::class, 'EditpasswordConfirm']);
+
+
+Route::get('/user/userPublication/{userID}', [UserAdsController::class, 'getAdsbyUser'])->name("userpub");
+
+Route::get('/user/AdEdit/{userID}', [UserAdsController::class, 'EditAdsbyUser']);
+Route::post('/user/editAdsconfirm', [UserAdsController::class, 'EditAdsbyUserconfirm']);
+Route::get('/user/AdDelete/{userID}', [UserAdsController::class, 'DeleteAdsbyUserconfirm']);
