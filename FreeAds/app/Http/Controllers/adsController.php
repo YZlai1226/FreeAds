@@ -13,7 +13,7 @@ class adsController extends Controller
 {
     public function VerifyAd($adId) {
         $ad = Ads::find($adId);
-        DB::table('ads')->where('id', $adId )->update(array('admin_verified' => '1'));
+        Ads::where('id', $adId )->update(['admin_verified' => '1']);
         return redirect()->route('admin');
 
     }

@@ -24,8 +24,7 @@ class categoryController extends Controller
     public function AddNewCategory(Request $request) {
         // error_log("INSIDE AddNewCategory");
         $name = $request->input('categoryName');
-        $data = array('name' => $name);
-        DB::table('categories')->insert($data);
+        Categories::create(['name' => $name]);
         return redirect()->route('admin');
     }
 
@@ -47,7 +46,7 @@ class categoryController extends Controller
     public function EditCategory(Request $request) {
         $categoryId = $request->input('categoryId');
         $name = $request->input('categoryName');
-        DB::table('categories')->where('id', $categoryId )->update(array('name' => $name));
+        Categories::where('id', $categoryId )->update(['name' => $name]);
         return redirect()->route('admin');
     }
 
