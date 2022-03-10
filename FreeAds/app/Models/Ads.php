@@ -26,4 +26,15 @@ class Ads extends Model
             ->get();
         return $value;
     }
+    public static function getAdsbyCategorie($category)
+    {
+        $value = DB::table('ads')
+            ->where('category', $category)
+            ->orderBy('id', 'desc')
+            ->limit(5)
+            ->get();
+        return $value;
+    }
+
+ 
 }

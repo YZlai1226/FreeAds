@@ -16,5 +16,4 @@ class Categories extends Model
         return $value;
     }
 
-
 }
