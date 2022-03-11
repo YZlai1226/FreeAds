@@ -6,16 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Categories extends Model
+class location extends Model
 {
     public $timestamps = true;
-    
     use HasFactory;
     protected $fillable = ['name'];
-
-    public static function getCategoryData() {
-        $value=DB::table('categories')->orderBy('id')->get();
+    public static function getLocationData()
+    {
+        $value = DB::table('location')->orderBy('id')->get();
         return $value;
     }
-
 }

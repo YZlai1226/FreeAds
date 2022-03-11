@@ -36,23 +36,34 @@
         </div>
     </div>
 
-<form method="post" action="/category">
-    @csrf
-    <label class="category-select"> Choose a category:</label>
-    <select name="categories" id="category-select">
-        <option value="">--Please choose an option--</option>
+    <!-- ============================== FILTERS ================================ -->
 
-        @foreach($categories as $valueCategory)
+    <form method="post" action="/">
+        @csrf
+        <label class="category-select"> Choose a category:</label>
+        <select name="categories" id="category-select">
+            <option value="Select_option">--Please select a category--</option>
+            <option value="AllCategories">All categories</option>
 
-        <option value="{{$valueCategory->name}}">{{$valueCategory->name}}</option>
-        @endforeach
-    </select>
-    <!-- <a href="/category"> -->
+            @foreach($categories as $valueCategory)
+
+            <option value="{{$valueCategory->name}}">{{$valueCategory->name}}</option>
+            @endforeach
+        </select>
+        <label class="category-select"> Order by:</label>
+
+<select name="filter" id="filter-select">
+    <option value="Select_option">--Please select a filter--</option>
+    <option value="orderByNew">Newest</option>
+    <option value="orderByOld">Oldest</option>
+<option value="orderByAsc">Price Asc</option>
+<option value="orderByDesc">Price Desc</option>
+<select>
         <input type="submit" name="categories_filter" value="Filter" class="btn_categories_filter"></input>
-    <!-- </a> -->
-</form>
+    </form>
 
 
+    <!-- ============================== SHOW ADS ================================ -->
 
     @foreach($Ads as $valueAd)
     <table class="show_ads">
@@ -62,7 +73,7 @@
             <!-- <td>{{$valueAd->id}} </td> -->
 
             <td>
-                <img src="{{ asset($valueAd->picture)}}" alt="ad image" width="300">
+                <img src="{{ asset('images/'.$valueAd->picture) }}" alt="ad image" width="300">
             </td>
 
             <td>
@@ -73,7 +84,8 @@
                 {{$valueAd->description}} <br>
             </td>
 
-            <td>{{$valueAd->location}} </br {{$valueAd->price}} </td>
+            <td>{{$valueAd->location}} </br> 
+            {{$valueAd->price}}€ </td>
                 <br><br>
 
         </tr>

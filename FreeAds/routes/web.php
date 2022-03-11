@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\adsController;
+use App\Http\Controllers\UserAdsController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +21,11 @@ use App\Http\Controllers\adsController;
 |
 */
 
-Route::get('/', [IndexController::class, 'showNewestAds'])->name('index');
+Route::get('/', [IndexController::class, 'showAllAds'])->name('index');
 
-Route::post('/category', [IndexController::class, 'showAdsByCategory'])->name('indexCat');
-
+Route::post('/', [IndexController::class, 'showAdsFiltered']);
+// Route::post('/', [IndexController::class, 'showAdsByCategory']);
+// Route::post('/', [IndexController::class, 'showAdsOrderBy']);
 
 
 Auth::routes(['verify' => true]);
@@ -49,12 +52,13 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 Route::middleware('verified')->group(function () {
 
+    
 
 // admin_category ...
 
 Route::get('/admin', [adminController::class, 'showAdsAndCategories'])->name('admin');
 
-Route::get('/admin', [categoryController::class, 'InsertForm']);
+// Route::get('/admin', [categoryController::class, 'InsertForm']);
 Route::get('/admin/adForm', [categoryController::class, 'InsertForm']);
 Route::post('/admin/addCategory', [categoryController::class, 'AddNewCategory']);
 Route::get('/admin/delete/{categoryId}', [categoryController::class, 'DeleteCategory']);
@@ -64,9 +68,25 @@ Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
 Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 });
+
+//user dashboard ...
+
+Route::get('/user/{userId}', [UserController::class, 'showUser']);
+
+Route::get('/user/userEdit/{userID}', [UserController::class, 'EditUser']);
+Route::post('/user/editsubmit', [UserController::class, 'EditConfirm']);
+
+Route::get('/user/user_password/{userID}', [UserController::class, 'EditpasswordUser']);
+Route::post('/user/editpasswordsubmit', [UserController::class, 'EditpasswordConfirm']);
+
+
+Route::get('/user/userPublication/{userID}', [UserAdsController::class, 'getAdsbyUser'])->name("userpub");
+
+Route::get('/user/AdEdit/{userID}', [UserAdsController::class, 'EditAdsbyUser']);
+Route::post('/user/editAdsconfirm', [UserAdsController::class, 'EditAdsbyUserconfirm']);
+Route::get('/user/AdDelete/{userID}', [UserAdsController::class, 'DeleteAdsbyUserconfirm']);
