@@ -21,9 +21,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [IndexController::class, 'showNewestAds'])->name('index');
+Route::get('/', [IndexController::class, 'showAllAds'])->name('index');
 
-Route::post('/index/droppingList', [IndexController::class, 'showAdsByCategory']);
+Route::post('/', [IndexController::class, 'showAdsFiltered']);
+// Route::post('/', [IndexController::class, 'showAdsByCategory']);
+// Route::post('/', [IndexController::class, 'showAdsOrderBy']);
 
 
 Auth::routes(['verify' => true]);
