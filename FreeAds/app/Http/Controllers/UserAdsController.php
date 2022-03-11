@@ -50,8 +50,11 @@ class UserAdsController extends Controller
         $ad = Ads::find($UserAd);
         $ad->delete();  
         error_log($UserAd);
-        dd($UserAd);
         return $this->getAdsbyUser($UserAd);
   
+    }
+
+    public function InsertAdForm() {
+        return view('ad_create');
     }
 }

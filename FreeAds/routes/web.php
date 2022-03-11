@@ -90,3 +90,5 @@ Route::get('/user/userPublication/{userID}', [UserAdsController::class, 'getAdsb
 Route::get('/user/AdEdit/{userID}', [UserAdsController::class, 'EditAdsbyUser']);
 Route::post('/user/editAdsconfirm', [UserAdsController::class, 'EditAdsbyUserconfirm']);
 Route::get('/user/AdDelete/{userID}', [UserAdsController::class, 'DeleteAdsbyUserconfirm']);
+
+Route::get('/user/adForm', [UserAdsController::class, 'InsertAdForm']);
