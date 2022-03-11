@@ -15,7 +15,9 @@ class UserAdsController extends Controller
 {
     public function getAdsbyUser($userID)
     {
+        Error_log("user id in the first function is " . $userID);
         $ad = Ads::getAdsbyUser($userID);
+        Error_log("result in the first function is " . $ad);
         return view('userAds', ['UserAd' => $ad, 'Hidden_user_id' => $userID]);
     }
 

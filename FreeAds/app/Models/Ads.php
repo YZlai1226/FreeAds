@@ -88,10 +88,12 @@ class Ads extends Model
 
     public static function getAdsbyUser($userID)
     {
+        error_log("user id in Ads model is " . $userID);
         $value = DB::table('ads')
-            ->where('admin_verified', '1')
+            // ->where('admin_verified', '1')
             ->where('user_id', $userID)
             ->get();
+            error_log("result in Ads model is " . $value);
         return $value;
     }
 
@@ -100,6 +102,7 @@ class Ads extends Model
         $value = DB::table('ads')
         ->where('id', $AdID)
         ->value('user_id');
+        return $value;
     }
     
     public static function getAdsByPriceAsc($category)
