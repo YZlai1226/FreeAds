@@ -58,9 +58,6 @@ class UserController extends Controller
         $password = $request->input('password');
         $password_confirmation = $request->input('password_confirmation');
 
-        // error_log('password is : ' . $password);
-        // error_log('password_confirmation is : ' . $password_confirmation);
-
         if ($password == $password_confirmation) {
             $password = bcrypt($password);
             DB::table('users')->where('id', $userID)->update(array('password' => $password));

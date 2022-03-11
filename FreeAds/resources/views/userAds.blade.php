@@ -10,6 +10,13 @@
 
 <body>
 
+    @if(count($UserAd) == 0)
+    <input type=hidden name="hidden_id" value="$Hidden_user_id" hidden>
+    <p>You don't have any ads yet ... </p><br><br>
+    <a href="/users/adForm/{{$Hidden_user_id}}">Add New</a>
+
+    @else
+
     @foreach($UserAd as $valueAd)
     <table class="show_ads">
         <tr>
@@ -32,7 +39,7 @@
             <td>
                 {{$valueAd->location}}
                 <br>
-                {{$valueAd->price}}
+                {{$valueAd->price}}€
                 <br>
             </td>
             <td>
@@ -48,7 +55,11 @@
         @endforeach
     </table>
 
-    <a href='/user/adForm'>Add New</a>
+    <a href="/users/adForm/{{$valueAd->user_id}}">Add New</a>
+
+
+    @endif
+
 </body>
 
 </html>

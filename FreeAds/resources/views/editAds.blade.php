@@ -15,8 +15,8 @@
             @csrf
 
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-            <input type="hidden" class="form-control" value="{{$UserAd->id}}" name="userID" hidden>
-
+            <input type="hidden" class="form-control" value="{{$UserAd->user_id}}" name="userID" hidden>
+            <input type="hidden" class="form-control" value="{{$UserAd->id}}" name="AdID" hidden>
             <label for="picture">Picture:</label><br>
             <img src="{{ asset('images/'.$UserAd->picture) }}" alt="ad image" width="300" required>
             <br>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('password');
             $table->rememberToken();
+            $table->boolean('admin')->default('0');
             $table->timestamps();
         });
     }

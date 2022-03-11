@@ -10,7 +10,7 @@ class Ads extends Model
 {
     use HasFactory;
     public $timestamps = true;
-    protected $fillable = ['admin_verified'];
+    protected $fillable = ['title', 'category', 'description', 'picture', 'price', 'location', 'admin_verified', 'user_id'];
     public static function getAddsData()
     {
         $value = DB::table('ads')->where('admin_verified', '0')->orderBy("id")->get();
@@ -45,5 +45,11 @@ class Ads extends Model
         return $value;
     }
 
- 
+    public static function getUserbyAd($AdID)
+    {
+        $value = DB::table('ads')
+        ->where('id', $AdID)
+        ->value('user_id');
+        return $value;
+    }
 }

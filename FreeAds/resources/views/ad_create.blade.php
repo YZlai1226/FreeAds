@@ -7,14 +7,14 @@
     <title>Add New Ads</title>
 </head>
 <body>
-<form action="/user/addAds/{{$User->id}}" method="post" class="form-group">
+<form action="/user/addAds" method="post" class="form-group">
         @csrf
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        <input type="hidden" class="form-control" value="{{$User->id}}" name="userID" hidden>
-        <label for="picture">upload picture: </label>
-        <input type="text" class="form-control" placeholder="Please upload the picture" name="adPicture" required> 
-        <label for="title">title: </label>
-        <input type="text" class="form-control" placeholder="title of your ad..." name="adTitle" required>
+        <input type="hidden" class="form-control" value="{{$UserID}}" name="userID" hidden>
+        <label for="picture">upload picture: </label><br>
+        <input type="text" class="form-control" placeholder="Please upload the picture" name="adPicture" required><br><br>
+        <label for="title">title: </label><br>
+        <input type="text" class="form-control" placeholder="title of your ad..." name="adTitle" required><br><br>
         <label class="category-select">Category:</label><br>
             <select name="adCategories" id="category-select" required>
             <option value="">--Please choose a category--</option>
@@ -24,23 +24,23 @@
 
                 <option>{{$valueCategory->name}}</option>
                 @endforeach
-            </select>
+            </select><br><br>
 
-        <label for="description">description: </label>
-        <input type="text" class="form-control" placeholder="what about your ad..." name="adDes" required>
-        <label for="price">price: </label>
-        <input type="text" class="form-control" placeholder="How much is it ?" name="adPrice" required>
+        <label for="description">description: </label><br>
+        <input type="text" class="form-control" placeholder="what about your ad..." name="adDes" required><br><br>
+        <label for="price">price: </label><br>
+        <input type="integer" class="form-control" placeholder="How much is it ?" name="adPrice" required><br><br>
 
         <label class="location-select">Location:</label>
             <br>
             <select name="Location" id="location-select" required>
             <option value="">--Please choose a location--</option>
 
-                @foreach($location as $LocationData)
+                @foreach($Location as $LocationData)
 
-                <option>{{ $LocationData->location }}</option>
+                <option value="{{ $LocationData->location }}">{{ $LocationData->location }}</option>
                 @endforeach
-            </select>
+            </select><br><br>
 
 
         <button type="submit" name = "add_ads" value="Add ads" class="btn btn-primary">Add</button>
