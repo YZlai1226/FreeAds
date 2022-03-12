@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 class Ads extends Model
 {
     use HasFactory;
@@ -13,7 +14,7 @@ class Ads extends Model
     protected $fillable = ['title', 'category', 'description', 'picture', 'price', 'location', 'admin_verified', 'user_id'];
     public static function getAddsData()
     {
-        $value = DB::table('ads')->where('admin_verified', '0')->orderBy("id")->get();
+        $value = DB::table('ads')->where('admin_verified', '0')->orderBy("updated_at")->get();
         return $value;
     }
 
@@ -89,22 +90,37 @@ class Ads extends Model
     public static function getAdsbyUser($userID)
     {
 
-        error_log("user id in Ads model is " . $userID);
+        error_log("================================user id in Ads model1 is " . $userID);
         $value = DB::table('ads')
             ->where('user_id', $userID)
+            ->orderBy('admin_verified', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->get();
-            error_log("result in Ads model is " . $value);
+        error_log("*********************************result in Ads model1 is " . $value);
+        return $value;
+    }
+
+    public static function getAdbyId($userId, $adId)
+    {
+        error_log("INSIDE: " . __FUNCTION__ . "(), userId: " . $userId);
+        error_log("INSIDE: " . __FUNCTION__ . "(), adId: " . $adId);
+        $value = DB::table('ads')
+            ->where('id', $adId)
+            ->where('user_id', $userId)
+            ->get();
+        error_log("INSIDE: " . __FUNCTION__ . "(), DB result is: " . $value);
+        error_log("END OF FUNCTION: " . __FUNCTION__ . "()");
         return $value;
     }
 
     public static function getUserbyAd($AdID)
     {
         $value = DB::table('ads')
-        ->where('id', $AdID)
-        ->value('user_id');
+            ->where('id', $AdID)
+            ->value('user_id');
         return $value;
     }
-    
+
     public static function getAdsByPriceAsc($category)
     {
         $value = DB::table('ads')

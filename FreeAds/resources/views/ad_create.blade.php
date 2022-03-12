@@ -58,6 +58,8 @@
         <button type="submit" name="add_ads" value="Add ads" class="btn btn-primary">Add</button>
 
     </form>
+    <br>
+    <a href='/user'>Back to Profile</a>
 </body>
 
 </html>

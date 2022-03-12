@@ -41,7 +41,7 @@
     @if(count($UserAd) == 0)
     <input type=hidden name="hidden_id" value="$Hidden_user_id" hidden>
     <p>You don't have any ads yet ... </p><br><br>
-    <a href="/users/adForm/{{$Hidden_user_id}}">Add New</a>
+    <a href="/user/adForm">Add New</a>
 
     @else
 
@@ -91,20 +91,26 @@
                 <td><strong>verified</strong></td>
                 @endif
                 <td>
-                    <a href="/user/AdEdit/{{$valueAd->id}}">
+                    <!-- <a href="/user/AdEdit"> -->
+                    <form method="POST" action="/user/AdEdit">
+                        @csrf
+                        <input name="adID" type="hidden" value="{{ $valueAd->id }}">
                         <button type="submit" name="edit_ad" value="edit_ad" class="btn btn-primary">Edit</button>
-                    </a>
+                    </form>
+                    <!-- </a> -->
                     <!-- </form> -->
-                    <a href="/user/AdDelete/{{$valueAd->id}}">
+                    <form method="POST" action="/user/AdDelete">
+                        @csrf
+                        <input name="adID" type="hidden" value="{{ $valueAd->id }}">
                         <button type="submit" name="delete_ad" value="delete_ad" class="btn btn-primary">Delete</button>
-                    </a>
+                    </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 
-    <a href="/users/adForm/{{$valueAd->user_id}}">Add New</a>
+    <a href="/user/adForm">Add New</a>
 
     @endif
     <script>

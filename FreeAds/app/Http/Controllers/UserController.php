@@ -52,23 +52,23 @@ class UserController extends Controller
 
 
 
-    public function EditpasswordUser($password)
-    {
-        $user = User::find($password);
+    public function EditpasswordUser()
+    {   $userId = Auth::id();
+        $user = User::find($userId);
         return view('user_password', ['user' => $user]);
     }
 
     public function EditpasswordConfirm(Request $request)
     {
-        $userID = $request->input('userID');
+        $userId = Auth::id();
         $password = $request->input('password');
         $password_confirmation = $request->input('password_confirmation');
 
         if ($password == $password_confirmation) {
             $password = bcrypt($password);
-            DB::table('users')->where('id', $userID)->update(array('password' => $password));
-            $user = User::find($userID);
-            return view('user', ['user' => $user]);
+            DB::table('users')->where('id', $userId)->update(array('password' => $password));
+            $user = User::find($userId);
+            return redirect()->route('user');
         } else {
             // echo 'password confirmation must be identical to password';
             return back()->withErrors(['message'=>'Whoops, looks like something went wrong !']);

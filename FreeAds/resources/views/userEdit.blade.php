@@ -15,7 +15,7 @@
         <button type="submit" name="edit_user" value="edit user" class="btn btn-primary">Submit</button>
     </form>
 
-    <a href='/user/user_password/{{$user->id}}'>
+    <a href='/user/user_password'>
         <button type="submit" name="edit_password" value="edit_password">change password</button><br><br>
     </a>
 

@@ -11,14 +11,13 @@
 <body>
 
 
-    <form action="/user/editAdsconfirm" method="post" class="form-group" enctype="multipart/form-data">
+    <form action="/user" method="post" class="form-group" enctype="multipart/form-data">
         @csrf
 
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        <input type="hidden" class="form-control" value="{{$UserAd->user_id}}" name="userID" hidden>
-        <input type="hidden" class="form-control" value="{{$UserAd->id}}" name="AdID" hidden>
+        <input type="hidden" class="form-control" value="{{$UserAd[0]->id}}" name="AdID" hidden>
         <label for="picture">Picture:</label><br>
-        <img src="/storage/{{$UserAd->picture }}" alt="ad image" width="300" required><br><br>
+        <img src="/storage/{{$UserAd[0]->picture }}" alt="ad image" width="300" required><br><br>
 
         <label for="">update your image: </label><br>
         <input type="file" name="image" id="inputImage" class="form-control @error('image') is-invalid @enderror"><br><br>
@@ -28,12 +27,12 @@
         @enderror
 
         <label for="title">*Title:</label><br>
-        <input type="text" id="title" name="title" value="{{$UserAd->title}}" required><br><br>
+        <input type="text" id="title" name="title" value="{{$UserAd[0]->title}}" required><br><br>
 
 
         <label class="category-select">*Category:</label><br>
         <select name="categories" id="category-select">
-            <option>{{$UserAd->category}}</option>
+            <option>{{$UserAd[0]->category}}</option>
 
             @foreach($categories as $valueCategory)
 
@@ -42,16 +41,16 @@
         </select>
 
         <br> <br> <label for="description">*Description:</label><br>
-        <input type="text" id="description" name="description" value="{{$UserAd->description}} " required><br><br>
+        <input type="text" id="description" name="description" value="{{$UserAd[0]->description}} " required><br><br>
 
         <label for="Price">*Price:</label><br>
-        <input type="number" id="Price" name="Price" min="0.00" max="10000000000.00" step="0.01" value="{{$UserAd->price}}" required><br><br>
+        <input type="number" id="Price" name="Price" min="0.00" max="10000000000.00" step="0.01" value="{{$UserAd[0]->price}}" required><br><br>
 
 
         <label class="location-select">*Location:</label>
         <br>
         <select name="Location" id="location-select">
-            <option>{{$UserAd->location}}</option>
+            <option>{{$UserAd[0]->location}}</option>
 
             @foreach($location as $LocationData)
 
@@ -62,7 +61,7 @@
         <button type="submit" name="edit_user" value="edit user" class="btn btn-primary">Confirm</button><br><br>
     </form>
 
-    <a href='/user/{{$UserAd->user_id}}'>Back to Profile</a>
+    <a href='/user'>Back to Profile</a>
 </body>
 
 </html>

@@ -18,5 +18,5 @@
         @endif
     </form>
 
-    <a href='/user/{{$user->id}}'>Back to Profile</a>
+    <a href='/user'>Back to Profile</a>
 </body>

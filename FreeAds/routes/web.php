@@ -53,9 +53,9 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::middleware('verified')->group(function () {
 
-    
+
+Route::middleware('can:admin')->group(function () {
 
 // admin_category ...
 
@@ -70,12 +70,12 @@ Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
 Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 
-
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-});
+
 
 
 
@@ -88,17 +88,18 @@ Route::get('/user', [UserAdsController::class, 'showUser'])->name('user');
 Route::get('/user/userEdit', [UserController::class, 'EditUser']);
 Route::post('/user/editsubmit', [UserController::class, 'EditConfirm']);
 
-Route::get('/user/user_password/{userID}', [UserController::class, 'EditpasswordUser']);
+Route::get('/user/user_password', [UserController::class, 'EditpasswordUser']);
 Route::post('/user/editpasswordsubmit', [UserController::class, 'EditpasswordConfirm']);
 
 
-Route::get('/user/userPublication/{userID}', [UserAdsController::class, 'getAdsbyUser'])->name("userpub");
+// Route::get('/user/userPublication/{userID}', [UserAdsController::class, 'getAdsbyUser'])->name("userpub");
 
-Route::get('/user/AdEdit/{userID}', [UserAdsController::class, 'EditAdsbyUser']);
-Route::post('/user/editAdsconfirm', [UserAdsController::class, 'EditAdsbyUserconfirm']);
-Route::get('/user/AdDelete/{AdID}', [UserAdsController::class, 'DeleteAdsbyUserconfirm']);
+// Route::get('/user/AdEdit', [UserAdsController::class, 'EditAdsbyUser']);
+Route::post('/user/AdEdit', [UserAdsController::class, 'EditAdsbyUser']);
+Route::post('/user', [UserAdsController::class, 'EditAdsbyUserconfirm']);
+Route::post('/user/AdDelete', [UserAdsController::class, 'DeleteAdsbyUserconfirm']);
 
-Route::get('/users/adForm/{USERID}', [UserAdsController::class, 'InsertAdForm']);
+Route::get('/user/adForm', [UserAdsController::class, 'InsertAdForm']);
 Route::post('/user/addAds', [UserAdsController::class, 'AddNewAd']);
 // Route::post('/ad_create',[UserAdsController::class, 'upload']);
 Route::controller(UserController::class)->group(function () {

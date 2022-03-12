@@ -39,13 +39,17 @@ class UserAdsController extends Controller
         return view('user', ['user' => $user, 'UserAd' => $ad, 'Hidden_user_id' => $userId]);
     }
 
-    public function EditAdsbyUser($userID)
+    public function EditAdsbyUser(Request $request)
     {
+        $adId = $request->input('adID');
+        $userId = Auth::id();
+        // error_log("================================user id in controller is " . $userId);
+        $ad = Ads::getAdbyId($userId, $adId);
+        // error_log("********************************ad in controller is " . $ad);
+        // error_log("********************************ad in controller is " . $ad);
         $categories = Categories::getCategoryData()->toArray();
         $location = Location::getLocationData()->toArray();
-
-        $ad = Ads::find($userID);
-        return view("editAds")->with('UserAd', $ad)->with('categories', $categories)->with("location", $location);
+        return view('editAds', ['UserAd' => $ad, 'categories' => $categories, 'location' => $location]);
     }
 
     public function EditAdsbyUserconfirm(Request $request)
@@ -60,45 +64,50 @@ class UserAdsController extends Controller
         $location = $request->input('Location');
         error_log("new picture is " . $newPic);
         if (!$newPic) {
-            Ads::where('id', $AdId)->update(['title' => $title, 'category' => $category, 'description' => $description, 'price' => $price, 'location' => $location]);
+            Ads::where('id', $AdId)->update(['title' => $title, 'category' => $category, 'description' => $description, 'price' => $price, 'location' => $location, 'admin_verified' => '0']);
         }
         else {
             $path = request('image')->store('pictures', 'public');
-            Ads::where('id', $AdId)->update(['title' => $title, 'category' => $category, 'description' => $description, 'picture' =>$path, 'price' => $price, 'location' => $location]);
+            Ads::where('id', $AdId)->update(['title' => $title, 'category' => $category, 'description' => $description, 'picture' =>$path, 'price' => $price, 'location' => $location, 'admin_verified' => '0']);
         }
          return $this->showUser($UserAd);
     }
 
 
-    public function DeleteAdsbyUserconfirm($AdID)
+    public function DeleteAdsbyUserconfirm(Request $request)
     {
-        $ad = Ads::find($AdID);
-        $userId = Ads::getUserbyAd($AdID);
+        $userId = Auth::id();
+        $adId = $request->input('adID');
+        $ad = Ads::find($adId);
         $ad->delete();
-        error_log("ad id is " . $AdID);
+        error_log("ad id is " . $adId);
         error_log("user id is " . $userId);
-        return $this->showUser($userId);
+        return redirect()->route('user');
     }
 
-    public function InsertAdForm($USERID)
+    public function InsertAdForm()
     {
-
+        $UserId = Auth::id();
         $categories = Categories::getCategoryData();
         $Location = Location::getLocationData();
-        return view("ad_create")->with('UserID', $USERID)->with('categories', $categories)->with("Location", $Location);
+        return view("ad_create")->with('UserID', $UserId)->with('categories', $categories)->with("Location", $Location);
     }
 
     public function AddNewAd(Request $request)
-    {
-        $path = request('image')->store('pictures', 'public');
-        $UserId = $request->input('userID');
+    {   
+        if (empty($request->input('image'))) {
+            $path = "/pictures/default_image.jpeg";
+        } else {
+            $path = request('image')->store('pictures', 'public');
+        }
+        $UserId = Auth::id();
         $title = $request->input('adTitle');
         $category = $request->input('adCategories');
         $description = $request->input('adDes');
         $price = $request->input('adPrice');
         $location = $request->input('Location');
         Ads::create(['title' => $title, 'category' => $category, 'description' => $description, 'picture' => $path, 'price' => $price, 'location' => $location, 'user_id' => $UserId]);
-        return $this->showUser($UserId);
+        return redirect()->route('user');
     }
 
 
