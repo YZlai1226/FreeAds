@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+
 class Ads extends Model
 {
     use HasFactory;
@@ -140,4 +141,16 @@ class Ads extends Model
             ->get();
         return $value;
     }
+
+
+    public static function searchAds($research)
+    {
+        $value = DB::table('ads')
+        ->where('admin_verified', '1')
+        ->where('title', 'like', '%' . $research . '%')
+        ->orWhere ('description', 'like', '%' . $research . '%')
+        ->get();
+        return $value;
+    }
+
 }

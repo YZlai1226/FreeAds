@@ -12,6 +12,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Routes;
 use App\User;
+use App\Http\Controllers\dashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +27,8 @@ use App\User;
 */
 
 Route::get('/', [IndexController::class, 'showAllAds'])->name('index');
-
-Route::post('/', [IndexController::class, 'showAdsFiltered']);
-// Route::post('/', [IndexController::class, 'showAdsByCategory']);
-// Route::post('/', [IndexController::class, 'showAdsOrderBy']);
+Route::post('/Filter', [IndexController::class, 'showAdsFiltered']);
+Route::post('/Search', [IndexController::class, 'showResearch']);
 
 
 Auth::routes(['verify' => true]);
@@ -57,24 +57,23 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 Route::middleware('can:admin')->group(function () {
 
-// admin_category ...
+    // admin_category ...
 
-Route::get('/admin', [adminController::class, 'showAdsAndCategories'])->name('admin');
+    Route::get('/admin', [adminController::class, 'showAdsAndCategories'])->name('admin');
 
-// Route::get('/admin', [categoryController::class, 'InsertForm']);
-Route::get('/admin/adForm', [categoryController::class, 'InsertForm']);
-Route::post('/admin/addCategory', [categoryController::class, 'AddNewCategory']);
-Route::get('/admin/delete/{categoryId}', [categoryController::class, 'DeleteCategory']);
-Route::get('/admin/edit/{categoryId}', [categoryController::class, 'EditForm']);
-Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
-Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
-Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
+    // Route::get('/admin', [categoryController::class, 'InsertForm']);
+    Route::get('/admin/adForm', [categoryController::class, 'InsertForm']);
+    Route::post('/admin/addCategory', [categoryController::class, 'AddNewCategory']);
+    Route::get('/admin/delete/{categoryId}', [categoryController::class, 'DeleteCategory']);
+    Route::get('/admin/edit/{categoryId}', [categoryController::class, 'EditForm']);
+    Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
+    Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
+    Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 
+    Route::get('/dashboard', [dashboardController::class, 'showAllAds'])->middleware(['auth'])->name('dashboard');
+    Route::post('/dashboard/Filter', [dashboardController::class, 'showAdsFiltered']);
+    Route::post('/dashboard/Search', [dashboardController::class, 'showResearch']);
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 
 
 
