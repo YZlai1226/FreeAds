@@ -45,85 +45,80 @@
 
 
 
-    <!-- ============================== SEARCHBAR ================================ -->
-    <div class="field is-grouped">
-        <div class="control is-expanded">
-            <form method="post" action="/Search">
-                @csrf
-                <input class="input is-info ml-3 mt-1" type="text" name="search" placeholder="Search..">
-        </div>
-        <div class="control"></div>
-        <button class="button mr-3" type="submit">Search</button>
-        </form>
-    </div>
-    </div>
-    <!-- ============================== FILTERS ================================ -->
-    <div class="field is-horizontal">
-        <form method="post" action="/Filter">
-            @csrf
-            <label class="field-label is-normal ml-3"> Choose a category:</label>
-            <select class="select" name="categories" id="category-select">
-                <option value="Select_option">--Please select a category--</option>
-                <option value="AllCategories">All categories</option>
-
-                @foreach($categories as $valueCategory)
-
-                <option value="{{$valueCategory->name}}">{{$valueCategory->name}}</option>
-                @endforeach
-            </select>
-            <label class="field-label is-normal ml-3"> Order by:</label>
-
-            <select class="select" name="filter" id="filter-select">
-                <option value="Select_option">--Please select a filter--</option>
-                <option value="orderByNew">Newest</option>
-                <option value="orderByOld">Oldest</option>
-                <option value="orderByAsc">Price Asc</option>
-                <option value="orderByDesc">Price Desc</option>
-            </select>
-            <input class="button mx-3" type="submit" name="categories_filter" value="Filter" class="btn_categories_filter"></input>
-        </form>
-    </div>
-
-            <div class="text">
-                <p class="is-size-1 has-text-primary px-2 pt-2">FreeAds</p>
-                <p class="is-size-4 has-text-info mb-3">The best way to buy!</p>
-                </p>
+        <!-- ============================== SEARCHBAR ================================ -->
+        <div class="field is-grouped">
+            <div class="control is-expanded">
+                <form method="post" action="/Search">
+                    @csrf
+                    <input class="input is-info ml-3 mt-1" type="text" name="search" placeholder="Search..">
             </div>
-       
+            <div class="control"></div>
+            <button class="button mr-3" type="submit">Search</button>
+            </form>
+        </div>
+        </div>
+        <!-- ============================== FILTERS ================================ -->
+        <div class="field is-horizontal">
+            <form method="post" action="/Filter">
+                @csrf
+                <label class="field-label is-normal ml-3"> Choose a category:</label>
+                <select class="select" name="categories" id="category-select">
+                    <option value="Select_option">--Please select a category--</option>
+                    <option value="AllCategories">All categories</option>
+
+                    @foreach($categories as $valueCategory)
+
+                    <option value="{{$valueCategory->name}}">{{$valueCategory->name}}</option>
+                    @endforeach
+                </select>
+                <label class="field-label is-normal ml-3"> Order by:</label>
+
+                <select class="select" name="filter" id="filter-select">
+                    <option value="Select_option">--Please select a filter--</option>
+                    <option value="orderByNew">Newest</option>
+                    <option value="orderByOld">Oldest</option>
+                    <option value="orderByAsc">Price Asc</option>
+                    <option value="orderByDesc">Price Desc</option>
+                </select>
+                <input class="button mx-3" type="submit" name="categories_filter" value="Filter" class="btn_categories_filter"></input>
+            </form>
         </div>
 
-    <!-- ============================== SHOW ADS ================================ -->
 
-    @foreach($Ads as $valueAd)
-    <table class="table is-narrow is-fullwidth is-hoverable">
-        <div class="tbody">
-            <tr class="tr">
-                <!-- <td>{{$valueAd->id}} </td> -->
 
-                <td>
-                    <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300">
-                </td>
 
-                <td>
-                    <strong>{{$valueAd->title}}</strong> <br>
+        <!-- ============================== SHOW ADS ================================ -->
 
-                    <em>{{$valueAd->category}}</em> <br>
-                    {{$valueAd->location}} </br>
+        @foreach($Ads as $valueAd)
+        <table class="table is-narrow is-fullwidth is-hoverable">
+            <div class="tbody">
+                <tr class="tr">
+                    <!-- <td>{{$valueAd->id}} </td> -->
 
-                    {{Str::limit($valueAd->description, 150, $end='...')}} <br>
-                    <a href="{{ URL::to('/ad/{$ad->id}') }}" class="button" data-toggle="modal">See more</a>
+                    <td>
+                        <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300">
+                    </td>
 
-                </td>
+                    <td>
+                        <strong>{{$valueAd->title}}</strong> <br>
 
-                <td><br>{{$valueAd->price}}€
-                </td>
-                <br><br>
+                        <em>{{$valueAd->category}}</em> <br>
+                        {{$valueAd->location}} </br>
 
-            </tr>
-            @endforeach
+                        {{Str::limit($valueAd->description, 150, $end='...')}} <br>
+                        <a href="{{ URL::to('/ad/{$ad->id}') }}" class="button" data-toggle="modal">See more</a>
+
+                    </td>
+
+                    <td><br>{{$valueAd->price}}€
+                    </td>
+                    <br><br>
+
+                </tr>
+                @endforeach
+            </div>
+
+        </table>
         </div>
-
-    </table>
-    </div>
 
         </a>
