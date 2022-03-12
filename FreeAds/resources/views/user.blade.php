@@ -94,7 +94,7 @@
         <div class="level-item">
             <table class="show_ads">
                 <thead>
-
+                <p class="is-size-5 has-text-info has-text-centered"><label for="phone">Phone </label></p>
                     <th>picture</th>
 
                     <th>details</th>
@@ -164,12 +164,13 @@
 <br><br>
 
 <div class="level">
-    <div class="level-item">
-        <a href='//user/adForm'>
-            <button class="button mr-3" type="submit" name="edit_password" value="edit_password">Add New Post</button>
-        </a>
+        <div class="level-item">
+            <a href='/user/adForm'>
+                <button class="button mr-3" type="submit" name="edit_password" value="edit_password">Add New</button>
+            </a>
+        </div>
     </div>
-</div>
+
 
 @endif
 <script>
