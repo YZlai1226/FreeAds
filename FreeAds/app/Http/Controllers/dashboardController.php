@@ -18,7 +18,7 @@ class dashboardController extends Controller
         error_log ("==========================in controller the first function user id is " . $userId);
         $admin = User::AdminCheck($userId);
         error_log ("**************************in controller the first function admin check is " . $admin);
-        return view('dashboard', ['Ads' => $Ads, 'categories' => $categories, 'admin' => $admin]);
+        return view('dashboard', ['Ads' => $Ads, 'categories' => $categories, 'admin'=> $admin]);
     }
 
 
@@ -58,8 +58,9 @@ class dashboardController extends Controller
 
         $categories = Categories::getCategoryData();
         error_log("categorie is" . $categories);
-
-        return redirect()->route('dashboard');
+        $userId = Auth::id();
+        $admin = User::AdminCheck($userId);
+        return view('dashboard', ['Ads' => $Ads, 'categories' => $categories, 'admin'=> $admin]);
     }
 
     public static function showResearch(Request $request)
@@ -71,7 +72,8 @@ class dashboardController extends Controller
         // dd($search);
         $Ads = Ads::searchAds($search);
         $categories = Categories::getCategoryData();
-
-        return redirect()->route('dashboard');
+        $userId = Auth::id();
+        $admin = User::AdminCheck($userId);
+        return view('dashboard', ['Ads' => $Ads, 'categories' => $categories,  'admin'=> $admin]);
     }
 }

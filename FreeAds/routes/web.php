@@ -28,7 +28,7 @@ use App\Http\Controllers\dashboardController;
 
 Route::get('/', [IndexController::class, 'showAllAds'])->name('index');
 Route::post('/Filter', [IndexController::class, 'showAdsFiltered']);
-Route::post('/Search', [IndexController::class, 'showAllAds']);
+Route::post('/Search', [IndexController::class, 'showResearch']);
 
 
 Auth::routes(['verify' => true]);

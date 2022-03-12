@@ -74,9 +74,6 @@
                         <input type="number" class="form-control" min="0.00" max="10000000000.00" step="0.01" name="adPrice" required><br><br>
 
 
-                        <p class="is-size-5 has-text-info "><label for="name">Phone</label></p>
-                        <input type="text" class="form-control" placeholder="where to contact you" name="adPhone" required>
-                        <br> <br>
 
 
                         <p class="is-size-5 has-text-info "><label class="location-select">Location</label></p>

@@ -94,7 +94,7 @@
         <div class="level-item">
             <table class="show_ads">
                 <thead>
-                <p class="is-size-5 has-text-info has-text-centered"><label for="phone">Phone </label></p>
+                
                     <th>picture</th>
 
                     <th>details</th>
