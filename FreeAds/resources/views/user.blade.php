@@ -12,7 +12,7 @@
 <body>
 
     <h1>Your information</h1>
-    <a href='/'>HOME</a>
+    <a href='/dashboard'>HOME</a>
     <form>
         <p>Name: {{$user->name}}</p>
 
