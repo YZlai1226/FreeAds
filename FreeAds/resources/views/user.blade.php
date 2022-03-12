@@ -86,7 +86,7 @@
                 <td>{{$valueAd->location}}</td>
                 <td>{{$valueAd->price}}€</td>
                 @if ($valueAd->admin_verified == '0')
-                <td><strong>peding...</strong></td>
+                <td><strong>pending...</strong></td>
                 @else
                 <td><strong>verified</strong></td>
                 @endif

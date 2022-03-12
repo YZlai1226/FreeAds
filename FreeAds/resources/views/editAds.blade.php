@@ -41,7 +41,7 @@
         </select>
 
         <br> <br> <label for="description">*Description:</label><br>
-        <input type="text" id="description" name="description" value="{{$UserAd[0]->description}} " required><br><br>
+        <input type="text" id="description" name="description" maxlength="1500" value="{{$UserAd[0]->description}} " required><br><br>
 
         <label for="Price">*Price:</label><br>
         <input type="number" id="Price" name="Price" min="0.00" max="10000000000.00" step="0.01" value="{{$UserAd[0]->price}}" required><br><br>

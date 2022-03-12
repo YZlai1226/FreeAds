@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="admin.css"> 
-    <title>admin</title>
+    <title>Admin Page</title>
 </head>
 
 <body>
@@ -52,7 +52,7 @@
 
                 <td>{{$valueAd->location}} </td>
 
-                <td>{{$valueAd->price}} </td>
+                <td>{{$valueAd->price}}€ </td>
 
                 <td>
                     <a href="/admin/verify/{{$valueAd->id}}">
