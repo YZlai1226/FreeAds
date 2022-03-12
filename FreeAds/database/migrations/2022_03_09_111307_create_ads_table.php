@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title')->uniqid('');
             $table->string('category');
             $table->text('description');
-            $table->string('picture');
+            $table->string('picture')->default('user.png');
             $table->integer('price');
             $table->string('location');
             $table->boolean('admin_verified')->default('0');

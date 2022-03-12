@@ -9,6 +9,9 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\adsController;
 use App\Http\Controllers\UserAdsController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Routes;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,11 +77,15 @@ Route::get('/dashboard', function () {
 
 });
 
+
+
+
+Route::middleware('verified')->group(function () {
 //user dashboard ...
 
-Route::get('/user/{userId}', [UserController::class, 'showUser']);
+Route::get('/user', [UserAdsController::class, 'showUser'])->name('user');
 
-Route::get('/user/userEdit/{userID}', [UserController::class, 'EditUser']);
+Route::get('/user/userEdit', [UserController::class, 'EditUser']);
 Route::post('/user/editsubmit', [UserController::class, 'EditConfirm']);
 
 Route::get('/user/user_password/{userID}', [UserController::class, 'EditpasswordUser']);
@@ -93,3 +100,9 @@ Route::get('/user/AdDelete/{AdID}', [UserAdsController::class, 'DeleteAdsbyUserc
 
 Route::get('/users/adForm/{USERID}', [UserAdsController::class, 'InsertAdForm']);
 Route::post('/user/addAds', [UserAdsController::class, 'AddNewAd']);
+// Route::post('/ad_create',[UserAdsController::class, 'upload']);
+Route::controller(UserController::class)->group(function () {
+    Route::get('/ad_create', 'create')->name('user.create');
+    Route::post('/ad_create', 'store')->name('user.store');
+});
+});

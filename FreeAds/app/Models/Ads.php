@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 class Ads extends Model
 {
     use HasFactory;
@@ -88,9 +88,9 @@ class Ads extends Model
 
     public static function getAdsbyUser($userID)
     {
+
         error_log("user id in Ads model is " . $userID);
         $value = DB::table('ads')
-            // ->where('admin_verified', '1')
             ->where('user_id', $userID)
             ->get();
             error_log("result in Ads model is " . $value);

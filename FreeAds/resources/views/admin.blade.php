@@ -41,7 +41,7 @@
                 <td>{{$valueAd->id}} </td>
 
                 <td>
-                    <img src="{{ asset('images/'.$valueAd->picture) }}" alt="ad image" width="300px">
+                    <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300px">
                 </td>
 
                 <td>{{$valueAd->title}} </td>

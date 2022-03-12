@@ -4,21 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Ads;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use App\Models\Location;
+use App\Http\Requests\ImageUploadRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Blade;
 
 
 class UserAdsController extends Controller
 {
-    public function getAdsbyUser($userID)
+    // public function getAdsbyUser($userID)
+    // {
+    //     // error_log("user id in the first function is " . $userID);
+    //     $ad = Ads::getAdsbyUser($userID);
+    //     // error_log("result in the first function is " . $ad);
+    //     // error_log("auth id is " . Auth::id());
+    //     // error_log("user is " . Auth::user());
+    //     return view('userAds', ['UserAd' => $ad, 'Hidden_user_id' => $userID]);
+    // }
+
+    
+    public function showUser()
     {
-        Error_log("user id in the first function is " . $userID);
-        $ad = Ads::getAdsbyUser($userID);
-        Error_log("result in the first function is " . $ad);
-        return view('userAds', ['UserAd' => $ad, 'Hidden_user_id' => $userID]);
+        // $user = User::find($userId);
+        $userId = Auth::id();
+        $user = Auth::user();
+        // error_log("user id is " . $this->userId);
+        // error_log("user id is " . $this->userId);
+        $ad = Ads::getAdsbyUser($userId);
+        return view('user', ['user' => $user, 'UserAd' => $ad, 'Hidden_user_id' => $userId]);
     }
 
     public function EditAdsbyUser($userID)
@@ -32,6 +50,7 @@ class UserAdsController extends Controller
 
     public function EditAdsbyUserconfirm(Request $request)
     {
+        $newPic = $request->file('image');
         $UserAd = $request->input('userID');
         $AdId = $request->input('AdID');
         $title = $request->input('title');
@@ -39,8 +58,15 @@ class UserAdsController extends Controller
         $description = $request->input('description');
         $price = $request->input('Price');
         $location = $request->input('Location');
-        Ads::where('id', $AdId)->update(['title' => $title, 'category' => $category, 'description' => $description, 'price' => $price, 'location' => $location]);
-        return $this->getAdsbyUser($UserAd);
+        error_log("new picture is " . $newPic);
+        if (!$newPic) {
+            Ads::where('id', $AdId)->update(['title' => $title, 'category' => $category, 'description' => $description, 'price' => $price, 'location' => $location]);
+        }
+        else {
+            $path = request('image')->store('pictures', 'public');
+            Ads::where('id', $AdId)->update(['title' => $title, 'category' => $category, 'description' => $description, 'picture' =>$path, 'price' => $price, 'location' => $location]);
+        }
+         return $this->showUser($UserAd);
     }
 
 
@@ -51,7 +77,7 @@ class UserAdsController extends Controller
         $ad->delete();
         error_log("ad id is " . $AdID);
         error_log("user id is " . $userId);
-        return $this->getAdsbyUser($userId);
+        return $this->showUser($userId);
     }
 
     public function InsertAdForm($USERID)
@@ -64,22 +90,17 @@ class UserAdsController extends Controller
 
     public function AddNewAd(Request $request)
     {
-
+        $path = request('image')->store('pictures', 'public');
         $UserId = $request->input('userID');
-        error_log("user id is " . $UserId);
         $title = $request->input('adTitle');
-        error_log("title is " . $title);
         $category = $request->input('adCategories');
-        error_log("category is " . $category);
         $description = $request->input('adDes');
-        error_log("des is " . $description);
-        $picture = $request->input('adPicture');
-        error_log("picture is " . $picture);
         $price = $request->input('adPrice');
-        error_log("price is " . $price);
         $location = $request->input('Location');
-        error_log("location is " . $location);
-        Ads::create(['title' => $title, 'category' => $category, 'description' => $description, 'picture' => $picture, 'price' => $price, 'location' => $location, 'user_id' => $UserId]);
-        return $this->getAdsbyUser($UserId);
+        Ads::create(['title' => $title, 'category' => $category, 'description' => $description, 'picture' => $path, 'price' => $price, 'location' => $location, 'user_id' => $UserId]);
+        return $this->showUser($UserId);
     }
+
+
 }
+
