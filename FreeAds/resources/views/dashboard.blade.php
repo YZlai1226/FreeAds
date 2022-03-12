@@ -28,6 +28,17 @@
         </div>
         <div class="navbar-menu">
             <div class="navbar-end">
+                @if ($admin === 1)
+                <div class="navbar-item has-text-info">    
+                    <a href='/admin'>Admin</a>
+                </div>
+                @endif
+                <div class="navbar-item has-text-info">    
+                    <a href='/user/adForm'>Add New Post</a>
+                </div>
+                <div class="navbar-item has-text-info">    
+                    <a href='/user'>Profile</a>
+                </div>
                 <form class="navbar-item has-text-info" method="POST" action="{{ route('logout') }}">
                     @csrf
 
@@ -91,7 +102,7 @@
                 <!-- <td>{{$valueAd->id}} </td> -->
 
                 <td>
-                    <img src="{{ asset('images/'.$valueAd->picture) }}" alt="ad image" width="300">
+                    <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300">
                 </td>
 
                 <td>

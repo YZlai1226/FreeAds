@@ -28,7 +28,7 @@ use App\Http\Controllers\dashboardController;
 
 Route::get('/', [IndexController::class, 'showAllAds'])->name('index');
 Route::post('/Filter', [IndexController::class, 'showAdsFiltered']);
-Route::post('/Search', [IndexController::class, 'showResearch']);
+Route::post('/Search', [IndexController::class, 'showAllAds']);
 
 
 Auth::routes(['verify' => true]);
@@ -55,7 +55,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 
 
-Route::middleware('can:admin')->group(function () {
+Route::middleware('admin')->group(function () {
 
     // admin_category ...
 
@@ -70,9 +70,7 @@ Route::middleware('can:admin')->group(function () {
     Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
     Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 
-    Route::get('/dashboard', [dashboardController::class, 'showAllAds'])->middleware(['auth'])->name('dashboard');
-    Route::post('/dashboard/Filter', [dashboardController::class, 'showAdsFiltered']);
-    Route::post('/dashboard/Search', [dashboardController::class, 'showResearch']);
+
 });
 
 
@@ -81,6 +79,9 @@ Route::middleware('can:admin')->group(function () {
 
 Route::middleware('verified')->group(function () {
 //user dashboard ...
+Route::get('/dashboard', [dashboardController::class, 'showAllAds'])->middleware(['auth'])->name('dashboard');
+Route::post('/dashboard/Filter', [dashboardController::class, 'showAdsFiltered']);
+Route::post('/dashboard/Search', [dashboardController::class, 'showAllAds']);
 
 Route::get('/user', [UserAdsController::class, 'showUser'])->name('user');
 

@@ -45,5 +45,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public static function AdminCheck($userId) {
+        $value = DB::table('users')
+            ->where('id', $userId)
+            ->value('admin');
+        return $value;
+    }
+
     
 }
