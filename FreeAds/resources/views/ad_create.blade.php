@@ -41,7 +41,7 @@
         <label for="description">description: </label><br>
         <input type="text" class="form-control" placeholder="what about your ad..." name="adDes" required><br><br>
         <label for="price">price: </label><br>
-        <input type="integer" class="form-control" placeholder="How much is it ?" name="adPrice" required><br><br>
+        <input type="number" class="form-control" min="0.00" max="10000000000.00" step="0.01" name="adPrice" required><br><br>
 
         <label class="location-select">Location:</label>
         <br>
