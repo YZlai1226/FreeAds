@@ -6,38 +6,35 @@ use Illuminate\Http\Request;
 use App\Models\Ads;
 use App\Models\Categories;
 
-class IndexController extends Controller
+class dashboardController extends Controller
 {
-
     public function showAllAds()
     {
         $Ads = Ads::getAllAds();
         $categories = Categories::getCategoryData();
-        return view('index', ['Ads' => $Ads], ['categories' => $categories]);
+        return view('dashboard', ['Ads' => $Ads], ['categories' => $categories]);
     }
-
+    
+    
     public function showAdsFiltered(Request $request)
     {
+        // dd($request);
         $category = $request->input('categories');
-        // dd($category);
+        error_log ("=============================================categories1 is:" . $category);
         $order = $request->input('filter');
-        error_log ("===============================category is:" . $category);
-        error_log ("===============================order is:" . $category);
+        error_log ("=============================================order1 is:" . $order);
 
-
+        
         if ($category == 'AllCategories' or $category == 'Select_option') {
             if ($order == 'orderByNew' or $order == 'Select_option') {
                 $Ads = Ads::getAllAds();
-                error_log ("===================================ads is1:" . $Ads);
-
+                error_log ("=============================================ads is1:" . $Ads);
             } elseif ($order == 'orderByOld') {
                 $Ads = Ads::getAllAdsDesc();
             } elseif ($order == 'orderByAsc') {
                 $Ads = Ads::getAllAdsByPriceAsc();
             } elseif ($order == 'orderByDesc') {
                 $Ads = Ads::getAllAdsByPriceDesc();
-                // } else {
-                // $Ads = Ads::getAdsbyCategorie();
             }
         } else {
             if ($order == 'orderByNew') {
@@ -54,20 +51,21 @@ class IndexController extends Controller
         }
 
         $categories = Categories::getCategoryData();
+        error_log("categorie is" . $categories);
 
-        return view('index', ['Ads' => $Ads], ['categories' => $categories]);
+        return view('dashboard', ['Ads' => $Ads], ['categories' => $categories]);
     }
 
     public static function showResearch(Request $request)
     {
-        error_log('================================================request is :' . $request);
+        // error_log('================================================request is :' . $request);
 
         $search = $request->input('search');
-        error_log('================================================research is :' . $search);
+        // error_log('================================================research is :' . $search);
         // dd($search);
         $Ads = Ads::searchAds($search);
         $categories = Categories::getCategoryData();
 
-        return view('index', ['Ads' => $Ads], ['categories' => $categories]);
+        return view('dashboard', ['Ads' => $Ads], ['categories' => $categories]);
     }
 }

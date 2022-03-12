@@ -13,16 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ads', function (Blueprint $table) {
+        Schema::create('location', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->uniqid('');
-            $table->string('category');
-            $table->text('description');
-            $table->string('picture')->default('user.png');
-            $table->integer('price');
-            $table->string('location');
-            $table->boolean('admin_verified')->default('0');
-            $table->string('user_id');
+            $table->text('location');
             $table->timestamps();
         });
     }
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ads');
+        Schema::dropIfExists('location');
     }
 };

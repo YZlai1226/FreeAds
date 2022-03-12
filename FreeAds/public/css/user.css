@@ -1,0 +1,13 @@
+.ellipsis {
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    overflow: hidden; 
+    height: 14px;
+}
+.description {
+    width: 300px;
+    background: #ccc; 
+    padding: 3px;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
