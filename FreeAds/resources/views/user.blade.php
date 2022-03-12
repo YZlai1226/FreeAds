@@ -5,43 +5,92 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('css/user.css')}}">
-    <title>User Profile</title>
+    <title>FreeAds - Menu </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="CSS/index.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
+
+<div class="level">
+    <div class="level-item">
+        <div class="navbar is-white">
+            <div class="navbar-brand">
+                <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <body>
 
-    <h1>Your information</h1>
-    <a href='/dashboard'>HOME</a>
+    <div class="level">
+        <div class="level-item">
+            <p class="is-size-3 has-text-primary px-2 pt-2 ">Your information</p>
+        </div>
+    </div>
+
+    <div class="level">
+        <div class="level-item">
+            <a href='/dashboard/'>
+                <button class="button mr-3" type="submit" name="edit_password" value="edit_password">HOME</button>
+            </a>
+        </div>
+    </div>
+
+
     <form>
-        <p>Name: {{$user->name}}</p>
-
-        <p>E-mail: {{$user->email}}</p>
-
-        <p>telephone: {{$user->phone}}</p>
+        <p class="is-size-5 has-text-info has-text-centered"><label for="name">Username  </label></p>
+        <p class="is-size-4  has-text-centered">{{$user->name}}</p>
+        <br>
+        <p class="is-size-5 has-text-info has-text-centered"><label for="email">E-mail </label></p>
+        <p class="is-size-4  has-text-centered">{{$user->email}}</p>
+        <br>
+        <p class="is-size-5 has-text-info has-text-centered"><label for="phone">Phone </label></p>
+        <p class="is-size-4  has-text-centered">{{$user->phone}}</p>
     </form>
 
-    <a href='/user/userEdit'>
-        <button type="submit" name="edit" value="editer">Edit your profile</button>
-    </a>
+<br>
+    <div class="level">
+        <div class="level-item">
+            <a href='/user/userEdit'>
+                <button class="button mr-3" type="submit" name="edit_password" value="edit_password">Edit your profile</button>
+            </a>
+        </div>
+    </div>
+   
 
-
-
-    <br>
-    <br>
-    <br>
-    <br>
 
     <!-- <a href='/user/userPublication/{{$user->id}}'> 
         <button type="submit" name="edit" value="publication">view your Ads</button><br><br> -->
 
     <!-- ========================================  all ads that this user has  ============================================= -->
 
+    <div class="level">
+        <div class="level-item">
+            <p class="is-size-3 has-text-info px-2 pt-2 "> ======================</p>
+        </div>
+    </div>
+    <div class="level">
+        <div class="level-item">
+            <p class="is-size-3 has-text-primary px-2 pt-2 ">Your Ads</p>
+        </div>
+    </div>
+
 
     @if(count($UserAd) == 0)
     <input type=hidden name="hidden_id" value="$Hidden_user_id" hidden>
-    <p>You don't have any ads yet ... </p><br><br>
-    <a href="/user/adForm">Add New</a>
+    <p class="is-size-5 has-text-info has-text-centered"><label for="name">You don't have any ads yet ... </label></p>
+
+    <div class="level">
+        <div class="level-item">
+            <a href='/user/adForm'>
+                <button class="button mr-3" type="submit" name="edit_password" value="edit_password">Add New</button>
+            </a>
+        </div>
+    </div>
+
 
     @else
 

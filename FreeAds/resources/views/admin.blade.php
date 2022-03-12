@@ -117,7 +117,7 @@
 
 
     <a href='/admin/adForm'>Add New</a>
-    <a href='/'>HOME</a>
+    <a href='/dashboard'>HOME</a>
 </body>
 
 </html>
