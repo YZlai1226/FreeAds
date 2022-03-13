@@ -44,7 +44,7 @@
 
     <section class="section">
         <div class="box mx-5 px-5 py-5 has-text-centered">
-            <img src="/storage/{{$valueAd[0]->picture}}" alt="ad image" max-width="600">
+            <img src="/storage/{{$valueAd[0]->picture}}" alt="ad image" width="700">
             </img><br>
             <br>
             <h1 class="title has-text-info">{{$valueAd[0]->title}}</H1>
