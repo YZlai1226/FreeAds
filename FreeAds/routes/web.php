@@ -70,7 +70,6 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
     Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 
-
 });
 
 
@@ -90,7 +89,6 @@ Route::post('/user/editsubmit', [UserController::class, 'EditConfirm']);
 
 Route::get('/user/user_password', [UserController::class, 'EditpasswordUser']);
 Route::post('/user/editpasswordsubmit', [UserController::class, 'EditpasswordConfirm']);
-
 
 // Route::get('/user/userPublication/{userID}', [UserAdsController::class, 'getAdsbyUser'])->name("userpub");
 
