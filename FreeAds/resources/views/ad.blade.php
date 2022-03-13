@@ -14,6 +14,7 @@
 
 <body>
 
+
     <div class="navbar is-white">
         <div class="navbar-brand">
             <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
@@ -21,7 +22,7 @@
 
         <div class="text">
             <p class="is-size-1 has-text-primary px-2 pt-2">FreeAds</p>
-            <p class="is-size-4 has-text-info mb-3">The best way to buy!</p>
+            <p class="is-size-4 has-text-info">The best way to buy!</p>
             </p>
         </div>
         <div class="navbar-menu">
@@ -41,39 +42,33 @@
 
     <!-- ============================== SHOW AD ================================ -->
 
+    <section class="section">
+        <div class="box mx-5 px-5 py-5 has-text-centered">
+            <img src="/storage/{{$valueAd[0]->picture}}" alt="ad image" max-width="600">
+            </img><br>
+            <br>
+            <h1 class="title has-text-info">{{$valueAd[0]->title}}</H1>
+            <em>{{$valueAd[0]->category}}</em>
+            <br>
+            <br>
 
-    <table class="table is-narrow is-fullwidth is-hoverable">
-        <div class="tbody">
-            <tr class="tr">
+            {{$valueAd[0]->location}}
+            <br>
+            <br>
 
-                <td>
-                    <img src="/storage/{{$valueAd[0]->picture}}" alt="ad image" width="300">
-                </td>
-                <td>
-                    <strong>{{$valueAd[0]->title}}</strong> </td>
-                    <td>
-                    <em>{{$valueAd[0]->category}}</em></td>
-                <td>
+            {{$valueAd[0]->description}}
+            <br>
 
-                    {{$valueAd[0]->location}}</td>
-                <td>
-
-
-                    {{$valueAd[0]->description}} </td>
-
-                <td><br>{{$valueAd[0]->price}}€
-                </td>
-                <td><br>{{$valueUser[0]->email}}€
-                </td>
-                <td><br>{{$valueUser[0]->phone}}
-                </td>
-                <br><br>
-
-            </tr>
+            <br>{{$valueAd[0]->price}}€
+            <br>
+           
+            <br>{{$valueUser[0]->email}}
+            <br>{{$valueUser[0]->phone}}
+            
 
         </div>
 
-    </table>
-
+    </section>
+</body>
 
 </html>
