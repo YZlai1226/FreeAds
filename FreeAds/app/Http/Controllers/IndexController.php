@@ -11,7 +11,7 @@ class IndexController extends Controller
 
     public function showAllAds()
     {
-        $Ads = Ads::getAllAds();
+        $Ads = Ads::SimplePaginate(5);
         $categories = Categories::getCategoryData();
         return view('index', ['Ads' => $Ads], ['categories' => $categories]);
     }

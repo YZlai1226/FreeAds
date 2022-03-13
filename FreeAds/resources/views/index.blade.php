@@ -134,6 +134,9 @@
         </div>
 
     </section>
+    <div class="level-item">
+            {{$Ads->links()}}
+            <div>
 
 
 </body>
