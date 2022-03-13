@@ -104,17 +104,17 @@
 
     <!-- ============================== SHOW ADS ================================ -->
 
-    @foreach($Ads as $valueAd)
-    <table class="table mx-auto is-striped is-hoverable">
-        <div class="tbody">
-            <tr class="tr">
+    <section class="section">
+        <div class="container">
+            @foreach($Ads as $valueAd)
+            <div class="columns">
 
-                <td>
-                    <img src="/storage/pictures/{{$valueAd->picture }}" alt="ad image" width="300">
-                </td>
+                <div class="column is-3">
+                    <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300">
+                </div>
 
-                </td>
-                <td>
+                <div class="column is-7">
+
                     <strong>{{$valueAd->title}}</strong> <br>
 
                     <em>{{$valueAd->category}}</em> <br>
@@ -123,16 +123,21 @@
                     {{Str::limit($valueAd->description, 150, $end='...')}} <br>
                     <a href="/ad/{{$valueAd->id}}" class="button" data-toggle="modal">See more</a>
 
-                </td>
+                </div>
 
-                <td><br>{{$valueAd->price}}€
-                </td>
+                <div class="column is-1">
+                    <div class="is-size-5 mb-4"><br>{{$valueAd->price}}€
+                    </div>
+                </div>
                 <br><br>
 
-            </tr>
+            </div>
             @endforeach
         </div>
 
-    </table>
+    </section>
+
+
+</body>
 
 </html>

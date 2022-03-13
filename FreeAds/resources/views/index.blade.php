@@ -17,7 +17,7 @@
 
     <div class="navbar is-white">
         <div class="navbar-brand">
-            <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 ml-5 mr-3">
+            <img src="/images/Logo.png" alt="Logo" style="max-height: 50px" class="mt-5 ml-5 mr-3">
 
             <div class="text">
                 <p class="is-size-1 has-text-primary px-2 pt-2">FreeAds</p>
@@ -108,7 +108,7 @@
             <div class="columns">
 
                 <div class="column is-3">
-                    <img src="/storage/pictures/{{$valueAd->picture }}" alt="ad image" width="300">
+                    <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300">
                 </div>
 
                 <div class="column is-7">

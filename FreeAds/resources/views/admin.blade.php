@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit your ads </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/84f26d0d3c.js" crossorigin="anonymous"></script>
 
-    <!-- <link rel="stylesheet" href="{{asset('css/index.css')}}" type="text/css"> -->
+    <link rel="stylesheet" href="{{asset('css/user.css')}}" type="text/css">
     <title>Admin Page</title>
 </head>
 
 <div class="navbar is-white">
     <div class="navbar-brand">
-        <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
+        <img src="/images/Logo.png" alt="Logo" style="max-height: 50px" class="mt-5 mx-3">
     </div>
 
     <div class="text">
@@ -27,7 +26,7 @@
     <div class="navbar-menu">
         <div class="navbar-end">
             <div class="navbar-item has-text-info">
-                <a href='/dashboard/'><img src="/images/accueil.png" alt="Logo" style="max-height: 70px" class="mt-5 " alt=""></a>
+                <a href='/dashboard/'><img src="/images/accueil.png" alt="Logo" style="max-height: 50px" class="mt-5 " alt=""></a>
             </div>
 
             <form class="navbar-item has-text-info" method="POST" action="{{ route('logout') }}">
@@ -35,7 +34,7 @@
                 <a href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                     <!-- {{ __('Log Out') }} -->
-                    <img src="/images/exit.png" alt="Logo" style="max-height: 70px" class="mt-5 mr-5 " alt="">
+                    <img src="/images/exit.png" alt="Logo" style="max-height: 50px" class="mt-5 mr-5 " alt="">
                 </a>
             </form>
 

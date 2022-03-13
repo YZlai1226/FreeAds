@@ -26,11 +26,11 @@
     <div class="navbar-menu">
         <div class="navbar-end">
             <div class="navbar-item has-text-info">
-                <a href='/user'><img src="/images/user.png" alt="Logo" style="max-height: 70px" class="mt-5 " alt=""></a>
+                <a href='/user'><img src="/images/user.png" alt="Logo" style="max-height: 50px" class="mt-5 " alt=""></a>
             </div>
 
             <div class="navbar-item has-text-info">
-                <a href='/dashboard/'><img src="/images/accueil.png" alt="Logo" style="max-height: 70px" class="mt-5 " alt=""></a>
+                <a href='/dashboard/'><img src="/images/accueil.png" alt="Logo" style="max-height: 50px" class="mt-5 " alt=""></a>
             </div>
 
             <form class="navbar-item has-text-info" method="POST" action="{{ route('logout') }}">
@@ -38,7 +38,7 @@
                 <a href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                     <!-- {{ __('Log Out') }} -->
-                    <img src="/images/exit.png" alt="Logo" style="max-height: 70px" class="mt-5 mr-5 " alt="">
+                    <img src="/images/exit.png" alt="Logo" style="max-height: 50px" class="mt-5 mr-5 " alt="">
                 </a>
             </form>
 
