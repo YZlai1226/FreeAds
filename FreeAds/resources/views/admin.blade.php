@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit your ads </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/84f26d0d3c.js" crossorigin="anonymous"></script>
-
-    <!-- <link rel="stylesheet" href="{{asset('css/index.css')}}" type="text/css"> -->
+    <link rel="stylesheet" href="{{asset('css/user.css')}}" type="text/css">
     <title>Admin Page</title>
 </head>
 
@@ -23,30 +21,15 @@
         <p class="is-size-4 has-text-info mb-3 mr-6">The best way to buy and sell!</p>
         </p>
     </div>
+    <a class="navbar-burger mt-3 mr-3" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
 
-    <div class="navbar-menu">
+    <div class="navbar-menu" id="nav-links">
         <div class="navbar-end">
             <div class="navbar-item has-text-info">
-                <a href='/dashboard/'><img src="/images/accueil.png" alt="Logo" style="max-height: 70px" class="mt-5 " alt=""></a>
-            </div>
-
-            <form class="navbar-item has-text-info" method="POST" action="{{ route('logout') }}">
-                @csrf
-                <a href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                    <!-- {{ __('Log Out') }} -->
-                    <img src="/images/exit.png" alt="Logo" style="max-height: 70px" class="mt-5 mr-5 " alt="">
-                </a>
-            </form>
-
-        </div>
-    </div>
-</div>
-
-<div class="level">
-    
-    <div class="navbar-item">
-        <div class="navbar-end">
             @isset($ads)
             <a href="{{ url('/admin/Category_Management') }}" class="navbar-item has-text-info">Category Management</a>
             <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info">HOME</a>
@@ -55,16 +38,27 @@
             <a href="{{ url('/admin') }}" class="navbar-item has-text-info">Back to Admin</a>
             <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info">HOME</a>
             @endisset
+            </div>
         </div>
     </div>
 </div>
+<script>
+        const burgerIcon = document.querySelector('#burger');
+        const navbarMenu = document.querySelector('#nav-links');
+
+        burgerIcon.addEventListener('click', () => {
+            navbarMenu.classList.toggle('is-active');
+        });
+    </script>
+
+<!-- -->
 
 <body>
     <!-- ===================================== category table ======================================= -->
     @if (isset($category))
-    <nav class="level">
-        <div class="level-item">
-            <table class="table is-striped is-hoverable">
+
+        <div class="category is-large">
+            <table class="table mx-auto is-striped is-hoverable">
                 <thead>
                     <th colspan="2">All categories </th>
                     <th>
@@ -117,19 +111,19 @@
         <!-- ================================  content  =============================== -->
         @else
 
-        <thead>
-            <th colspan="5">All Pending Ads . . .</th>
-        </thead>
+    
+        
         <section class="section">
             <div class="container">
+                <div class="header"><strong>All Pending Ads . . .</strong></div>
                 <!-- <table class="table is-striped is-hoverable"> -->
 
-                <div class="columns">
-                    <div class="column is-1">id</div>
-                    <div class="column is-2">picture</div>
-                    <div class="column is-5">title</div>
-                    <div class="column is-1">price</div>
-                    <div class="column is-1">action</div>
+                <div class="columns head is-hidden-mobile">
+                    <div class="column is-1"><strong>id</strong></div>
+                    <div class="column is-2"><strong>picture</strong></div>
+                    <div class="column is-5"><strong>details</strong></div>
+                    <div class="column is-1"><strong>price</strong></div>
+                    <div class="column is-2"><strong>action</strong></div>
                 </div>
 
             </div>
@@ -141,9 +135,9 @@
 
                     <div class="column is-1">{{$valueAd->id}} </div>
                     <div class="column is-2">
-                        <figure class="image is-128x128">
-                            <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300px">
-                        </figure>
+                        <div class="image">
+                            <img src="/storage/{{$valueAd->picture }}" alt="ad image">
+                        </div>
                     </div>
                     <div class="column is-5">
                         <strong>{{$valueAd->title}}</strong><br>
@@ -154,7 +148,7 @@
                         <a href="#" onclick="myFunction({{$valueAd->id}})" id="show-more{{$valueAd->id}}">Read More</a>
                     </div>
                     <div class="column is-1">{{$valueAd->price}}€ </div>
-                    <div class="column is-1">
+                    <div class="column is-2">
                         <a href="/admin/verify/{{$valueAd->id}}">
                             <span class="icon-text has-text-success">
                                 <span class="icon">
@@ -172,11 +166,6 @@
             </div>
         </section>
         <!-- </table> -->
-
-
-
-
-
 
         <div class="level-item">
             {{$ads->links()}}
