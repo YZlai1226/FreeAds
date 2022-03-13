@@ -16,27 +16,32 @@
     <div class="navbar is-white">
         <div class="navbar-brand">
             <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
-        </div>
-
-        <div class="text">
-            <p class="is-size-1 has-text-primary px-2 pt-2">FreeAds</p>
-            <p class="is-size-4 has-text-info mb-3">The best way to buy!</p>
+            
+            <div class="text">
+                <p class="is-size-1 has-text-primary px-2 pt-2">FreeAds</p>
+                <p class="is-size-4 has-text-info mb-3">The best way to buy!</p>
             </p>
         </div>
-        <div class="navbar-menu">
+        <a class="navbar-burger mt-5 mr-5" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+    </div>
+        <div class="navbar-menu" id="nav-links">
             <div class="navbar-end">
                 @if ($admin === 1)
-                <div class="navbar-item has-text-info">
+                <div class="navbar-item has-text-info has-text-right">
                     <a href='/admin'>Admin</a>
                 </div>
                 @endif
-                <div class="navbar-item has-text-info">
+                <div class="navbar-item has-text-info has-text-right">
                     <a href='/user/adForm'>Add New Post</a>
                 </div>
-                <div class="navbar-item has-text-info">
+                <div class="navbar-item has-text-info has-text-right">
                     <a href='/user'>Profile</a>
                 </div>
-                <form class="navbar-item has-text-info" method="POST" action="{{ route('logout') }}">
+                <form class="navbar-item has-text-info has-text-right" method="POST" action="{{ route('logout') }}">
                     @csrf
 
                     <a href="route('logout')" onclick="event.preventDefault();
@@ -47,7 +52,14 @@
             </div>
         </div>
     </div>
+    <script>
+        const burgerIcon = document.querySelector('#burger');
+        const navbarMenu = document.querySelector('#nav-links');
 
+        burgerIcon.addEventListener('click', () => {
+            navbarMenu.classList.toggle('is-active');
+        });
+    </script>
 
 
     <!-- ============================== SEARCHBAR ================================ -->

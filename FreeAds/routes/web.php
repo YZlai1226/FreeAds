@@ -54,8 +54,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::middleware('can:admin')->group(function () {
-
+Route::middleware('admin')->group(function () {
     // admin_category ...
 
     Route::get('/admin', [adminController::class, 'showAdsAndCategories'])->name('admin');
@@ -64,8 +63,8 @@ Route::middleware('can:admin')->group(function () {
     Route::get('/admin/adForm', [categoryController::class, 'InsertForm']);
     Route::post('/admin/addCategory', [categoryController::class, 'AddNewCategory']);
     Route::get('/admin/delete/{categoryId}', [categoryController::class, 'DeleteCategory']);
-    Route::get('/admin/edit/{categoryId}', [categoryController::class, 'EditForm']);
     Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
+    Route::get('/admin/edit/{categoryId}', [categoryController::class, 'EditForm']);
     Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
     Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
 
