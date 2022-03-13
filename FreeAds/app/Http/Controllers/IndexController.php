@@ -70,4 +70,5 @@ class IndexController extends Controller
 
         return view('index', ['Ads' => $Ads], ['categories' => $categories]);
     }
+
 }

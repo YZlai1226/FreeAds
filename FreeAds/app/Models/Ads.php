@@ -146,11 +146,19 @@ class Ads extends Model
     public static function searchAds($research)
     {
         $value = DB::table('ads')
-        ->where('admin_verified', '1')
-        ->where('title', 'like', '%' . $research . '%')
-        ->orWhere ('description', 'like', '%' . $research . '%')
-        ->get();
+            ->where('admin_verified', '1')
+            ->where('title', 'like', '%' . $research . '%')
+            ->orWhere ('description', 'like', '%' . $research . '%')
+            ->get();
         return $value;
     }
+
+    public static function getTheAd($AdID)
+    {
+        $value = DB::table('ads')
+            ->where('id', $AdID)
+            ->get();
+        return $value;
+    }   
 
 }

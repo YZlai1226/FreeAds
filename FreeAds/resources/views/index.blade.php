@@ -16,7 +16,7 @@
 
 
 
-    <div class="navbar is-white">
+    <div class="navbar is-">
         <div class="navbar-brand">
             <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
         </div>
@@ -95,7 +95,7 @@
                 <!-- <td>{{$valueAd->id}} </td> -->
 
                 <td>
-                    <img src="{{ asset('images/'.$valueAd->picture) }}" alt="ad image" width="300">
+                    <img src="{{ asset('storage/'.$valueAd->picture) }}" alt="ad image" width="300">
                 </td>
 
                 <td>
@@ -105,8 +105,7 @@
                     {{$valueAd->location}} </br>
 
                     {{Str::limit($valueAd->description, 150, $end='...')}} <br>
-                    <a href="{{ URL::to('/ad/{$ad->id}') }}" class="button" data-toggle="modal">See more</a>
-
+                    <a href="/ad/{{$valueAd->id}}" class="button" data-toggle="modal">See more</a>
                 </td>
 
                 <td><br>{{$valueAd->price}}€

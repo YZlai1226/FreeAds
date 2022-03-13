@@ -18,7 +18,7 @@
 
     <div class="navbar is-white">
         <div class="navbar-brand">
-            <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
+            <img src="/storage/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
         </div>
 
         <div class="text">
