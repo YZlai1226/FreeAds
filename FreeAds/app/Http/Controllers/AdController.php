@@ -14,8 +14,6 @@ class AdController extends Controller
         
         $Ads = Ads::getTheAd($id);
         $Users = Join::getUserInfos($id);
-        error_log("===================Ad id is " . $Ads);
-
         return view('ad', ['valueAd' => $Ads], ['valueUser' => $Users]);
     }
 
