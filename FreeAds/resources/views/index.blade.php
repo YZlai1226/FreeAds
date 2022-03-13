@@ -28,7 +28,7 @@
             <div class="navbar-end">
                 @if (Route::has('login'))
                 @auth
-                <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info">Dashboard</a>
+                <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info"><img src="/images/accueil.png" alt="Logo" style="max-height: 70px" class="mr-3"></a>
                 @else
                 <a href="{{ route('login') }}" class="navbar-item has-text-info">Log in</a>
 

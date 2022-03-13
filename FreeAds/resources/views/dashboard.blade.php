@@ -22,21 +22,48 @@
         </div>
 
         <div class="text">
-            <p class="is-size-1 has-text-primary px-2 pt-2">FreeAds</p>
-            <p class="is-size-4 has-text-info mb-3">The best way to buy!</p>
+            <p class="is-size-1 has-text-primary px-2 pt-2 mr-6">FreeAds</p>
+            <p class="is-size-4 has-text-info mb-3 mr-6">The best way to buy!</p>
             </p>
         </div>
+        <!-- <div class="text">
+            <a href='/user/adForm'><img src="/images/add.png" alt="Logo" style="max-height: 70px" class="mt-5 ml-6 mr-3">
+                <p class="is-size-4 has-text-info">Add New Post</p>
+            </a>
+        </div> -->
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" type="text/css" rel="stylesheet">
+
+        <div class="columns is-mobile is-centered is-vcentered">
+            <div class="column">
+                <a href='/user/adForm'>
+                    <img src="/images/add.png" alt="Logo" style="max-height: 70px" class="mt-5 ml-6 " alt="">
+                </a>
+            </div>
+        </div>
+        <div class="columns is-mobile is-centered is-vcentered">
+            <div class="column">
+                <a href='/user/adForm'>
+                    <span class="is-size-5 mt-1 has-text-info">Add New Post</span>
+                </a>
+            </div>
+        </div>
+
+        <p class="is-size-5 has-text-info has-text-centered">
+        <div class="navbar-item has-text-info">
+
+        </div>
+        </p>
+        
         <div class="navbar-menu">
             <div class="navbar-end">
                 @if ($admin === 1)
-                <div class="navbar-item has-text-info">    
+                <div class="navbar-item has-text-info">
                     <a href='/admin'>Admin</a>
                 </div>
                 @endif
-                <div class="navbar-item has-text-info">    
-                    <a href='/user/adForm'>Add New Post</a>
-                </div>
-                <div class="navbar-item has-text-info">    
+
+                <div class="navbar-item has-text-info">
                     <a href='/user'>Profile</a>
                 </div>
                 <form class="navbar-item has-text-info" method="POST" action="{{ route('logout') }}">
