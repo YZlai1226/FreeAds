@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FreeAds - Menu </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="CSS/index.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
@@ -16,7 +15,7 @@
 
     <div class="navbar is-white">
         <div class="navbar-brand">
-            <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
+            <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 ml-5 mr-3">
         </div>
 
         <div class="text">
@@ -28,12 +27,16 @@
             <div class="navbar-end">
                 @if (Route::has('login'))
                 @auth
+<<<<<<< HEAD
                 <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info"><img src="/images/accueil.png" alt="Logo" style="max-height: 70px" class="mr-3"></a>
+=======
+                <a href="{{ url('/dashboard') }}" class="navbar-item mr-5 has-text-info">Dashboard</a>
+>>>>>>> ef1ac4bf7e5e900d2edae06feb4efc72b3f26c8f
                 @else
-                <a href="{{ route('login') }}" class="navbar-item has-text-info">Log in</a>
+                <a href="{{ route('login') }}" class="navbar-item mr-5 has-text-info">Log in</a>
 
                 @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="navbar-item has-text-info">Register</a>
+                <a href="{{ route('register') }}" class="navbar-item mr-5 has-text-info">Register</a>
                 @endif
                 @endauth
                 @endif
@@ -50,10 +53,10 @@
             <div class="control is-expanded">
                 <form method="post" action="/Search">
                     @csrf
-                    <input class="input is-info ml-3 mt-1" type="text" name="search" placeholder="Search..">
+                    <input class="input is-info ml-5 mt-5" type="text" name="search" placeholder="Search..">
             </div>
             <div class="control"></div>
-            <button class="button mr-3" type="submit">Search</button>
+            <button class="button mx-5 mt-5 mb-5" type="submit">Search</button>
             </form>
         </div>
         </div>
@@ -61,7 +64,7 @@
         <div class="field is-horizontal">
             <form method="post" action="/Filter">
                 @csrf
-                <label class="field-label is-normal ml-3"> Choose a category:</label>
+                <label class="field-label is-normal ml-5"> Choose a category:</label>
                 <select class="select" name="categories" id="category-select">
                     <option value="Select_option">--Please select a category--</option>
                     <option value="AllCategories">All categories</option>
@@ -90,7 +93,7 @@
         <!-- ============================== SHOW ADS ================================ -->
 
         @foreach($Ads as $valueAd)
-        <table class="table is-narrow is-fullwidth is-hoverable">
+        <table class="table mx-auto is-striped is-hoverable">
             <div class="tbody">
                 <tr class="tr">
 
@@ -98,7 +101,7 @@
                         <img src="/storage/pictures/{{$valueAd->picture }}" alt="ad image" width="300">
                     </td>
 
-                </td>
+                    </td>
                     <td>
                         <strong>{{$valueAd->title}}</strong> <br>
 
@@ -119,6 +122,5 @@
             </div>
 
         </table>
-        </div>
 
-        </a>
+</html>
