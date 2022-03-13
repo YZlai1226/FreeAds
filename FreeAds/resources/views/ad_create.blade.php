@@ -5,61 +5,109 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Ads</title>
+    <title>Add New Ads </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="CSS/index.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<div class="level">
+    <div class="level-item">
+        <div class="navbar is-white">
+            <div class="navbar-brand">
+                <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
+            </div>
+        </div>
+    </div>
+</div>
 
 <body>
-    <form action="/user/addAds" method="post" class="form-group" enctype="multipart/form-data">
-        @csrf
-        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        <input type="hidden" class="form-control" value="{{$UserID}}" name="userID" hidden>
-        <!-- <label for="picture">upload picture: </label><br> -->
-        <!-- <input type="text" class="form-control" placeholder="Please upload the picture" name="adPicture" required><br><br> -->
-        <!-- <input type="file" name="image">
-        <input type="submit" value="Upload"><br><br> -->
-        <label for="">Image: </label><br>
-        <input type="file" name="image" id="inputImage" class="form-control @error('image') is-invalid @enderror"><br><br>
+    <div class="level">
+        <div class="level-item">
+            <p class="is-size-3 has-text-primary px-2 pt-2 ">Create a new Ad</p>
+        </div>
+    </div>
 
-        @error('image')
-        <span class="text-danger">{{ $message }}</span>
-        @enderror
+    <body>
 
+        <div class="level">
+            <div class="level-item">
 
-        <label for="title">title: </label><br>
-        <input type="text" class="form-control" placeholder="title of your ad..." name="adTitle" required><br><br>
-        <label class="category-select">Category:</label><br>
-        <select name="adCategories" id="category-select" required>
-            <option value="">--Please choose a category--</option>
+                <body>
+                    <form action="/user/addAds" method="post" class="form-group" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                        <input type="hidden" class="form-control" value="{{$UserID}}" name="userID" hidden>
 
 
-            @foreach($categories as $valueCategory)
+                        <p class="is-size-5 has-text-info "><label for="title">Image</label></p>
 
-            <option>{{$valueCategory->name}}</option>
-            @endforeach
-        </select><br><br>
+                        <input type="file" name="image" id="inputImage" class="form-control @error('image') is-invalid @enderror">
 
-        <label for="description">description: </label><br>
-        <input type="text" class="form-control" placeholder="what about your ad..." name="adDes" required><br><br>
-        <label for="price">price: </label><br>
-        <input type="number" class="form-control" min="0.00" max="10000000000.00" step="0.01" name="adPrice" required><br><br>
+                        @error('image')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
 
-        <label class="location-select">Location:</label>
-        <br>
-        <select name="Location" id="location-select" required>
-            <option value="">--Please choose a location--</option>
+                        <br> <br>
+                        <p class="is-size-5 has-text-info "><label for="title">Title:</label></p>
 
-            @foreach($Location as $LocationData)
-
-            <option value="{{ $LocationData->location }}">{{ $LocationData->location }}</option>
-            @endforeach
-        </select><br><br>
+                        <input type="text" class="form-control" placeholder="title of your ad..." name="adTitle" required><br><br>
 
 
-        <button type="submit" name="add_ads" value="Add ads" class="btn btn-primary">Add</button>
+                        <p class="is-size-5 has-text-info "> <label class="category-select">Category:</label></p>
 
-    </form>
-    <br>
-    <a href='/user'>Back to Profile</a>
-</body>
+                        <select name="adCategories" id="category-select" required>
+                            <option value="">--Please choose a category--</option>
 
-</html>
+
+                            @foreach($categories as $valueCategory)
+
+                            <option>{{$valueCategory->name}}</option>
+                            @endforeach
+                        </select>
+
+
+                        <br><br>
+                        <p class="is-size-5 has-text-info "> <label for="description">Description: </label></p>
+                        <input type="text" class="form-control" placeholder="what about your ad..." name="adDes" required>
+                        <br><br>
+                        <p class="is-size-5 has-text-info"> <label for="price">Price </label><br></p>
+                        <input type="number" class="form-control" min="0.00" max="10000000000.00" step="0.01" name="adPrice" required><br><br>
+
+
+
+
+                        <p class="is-size-5 has-text-info "><label class="location-select">Location</label></p>
+
+
+                        <select name="Location" id="location-select" required>
+                            <option value="">--Please choose a location--</option>
+
+
+                            @foreach($Location as $LocationData)
+
+                            <option value="{{ $LocationData->location }}">{{ $LocationData->location }}</option>
+                            @endforeach
+
+                        </select><br><br>
+                        <div class="level">
+                            <div class="level-item">
+                                <br>
+                                <button class="button mr-3" type="submit" name="add_ads" value="Add ads" class="btn btn-primary">Add</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+            </div>
+        </div>
+
+
+
+        <div class="level">
+            <div class="level-item">
+                <br>
+                <a href='/user'>
+                    <button class="button mr-3" type="submit" name="edit_password" value="edit_password">Back to Profile</button>
+                </a>
+            </div>
+        </div>

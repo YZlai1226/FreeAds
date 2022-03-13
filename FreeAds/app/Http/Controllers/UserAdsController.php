@@ -95,10 +95,10 @@ class UserAdsController extends Controller
 
     public function AddNewAd(Request $request)
     {   
-        if (empty($request->input('image'))) {
-            $path = "/pictures/default_image.jpeg";
-        } else {
+        if ($request->hasFile('image')) {
             $path = request('image')->store('pictures', 'public');
+        } else {
+            $path = "/pictures/default_image.jpeg";
         }
         $UserId = Auth::id();
         $title = $request->input('adTitle');

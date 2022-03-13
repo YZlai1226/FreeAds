@@ -2,7 +2,7 @@
     white-space: nowrap; 
     text-overflow: ellipsis; 
     overflow: hidden; 
-    height: 14px;
+    height: 30px;
 }
 .description {
     width: 300px;

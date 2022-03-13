@@ -73,6 +73,7 @@ Route::middleware('can:admin')->group(function () {
 
 Route::middleware('verified')->group(function () {
     //user dashboard ...
+    
     Route::get('/dashboard', [dashboardController::class, 'showAllAds'])->middleware(['auth'])->name('dashboard');
     Route::post('/dashboard/Filter', [dashboardController::class, 'showAdsFiltered']);
     Route::post('/dashboard/Search', [dashboardController::class, 'showResearch']);
@@ -84,7 +85,6 @@ Route::post('/user/editsubmit', [UserController::class, 'EditConfirm']);
 
 Route::get('/user/user_password', [UserController::class, 'EditpasswordUser']);
 Route::post('/user/editpasswordsubmit', [UserController::class, 'EditpasswordConfirm']);
-
 
 // Route::get('/user/userPublication/{userID}', [UserAdsController::class, 'getAdsbyUser'])->name("userpub");
 

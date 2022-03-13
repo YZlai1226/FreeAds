@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ads;
+use App\Models\User;
 use App\Models\Categories;
+use Illuminate\Support\Facades\Auth;
 
 class dashboardController extends Controller
 {
@@ -12,23 +14,25 @@ class dashboardController extends Controller
     {
         $Ads = Ads::getAllAds();
         $categories = Categories::getCategoryData();
-        return view('dashboard', ['Ads' => $Ads], ['categories' => $categories]);
+        $userId = Auth::id();
+        $admin = User::AdminCheck($userId);
+        return view('dashboard', ['Ads' => $Ads, 'categories' => $categories, 'admin' => $admin]);
     }
-    
-    
+
+
     public function showAdsFiltered(Request $request)
     {
         // dd($request);
         $category = $request->input('categories');
-        error_log ("=============================================categories1 is:" . $category);
+        error_log("=============================================categories1 is:" . $category);
         $order = $request->input('filter');
-        error_log ("=============================================order1 is:" . $order);
+        error_log("=============================================order1 is:" . $order);
 
-        
+
         if ($category == 'AllCategories' or $category == 'Select_option') {
             if ($order == 'orderByNew' or $order == 'Select_option') {
                 $Ads = Ads::getAllAds();
-                error_log ("=============================================ads is1:" . $Ads);
+                error_log("=============================================ads is1:" . $Ads);
             } elseif ($order == 'orderByOld') {
                 $Ads = Ads::getAllAdsDesc();
             } elseif ($order == 'orderByAsc') {
@@ -53,7 +57,9 @@ class dashboardController extends Controller
         $categories = Categories::getCategoryData();
         error_log("categorie is" . $categories);
 
-        return view('dashboard', ['Ads' => $Ads], ['categories' => $categories]);
+        $userId = Auth::id();
+        $admin = User::AdminCheck($userId);
+        return view('dashboard', ['Ads' => $Ads, 'categories' => $categories, 'admin' => $admin]);
     }
 
     public static function showResearch(Request $request)
@@ -66,6 +72,8 @@ class dashboardController extends Controller
         $Ads = Ads::searchAds($search);
         $categories = Categories::getCategoryData();
 
-        return view('dashboard', ['Ads' => $Ads], ['categories' => $categories]);
+        $userId = Auth::id();
+        $admin = User::AdminCheck($userId);
+        return view('dashboard', ['Ads' => $Ads, 'categories' => $categories, 'admin' => $admin]);
     }
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreeAds - Menu </title>
+    <title>Dashboard </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="CSS/index.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +28,17 @@
         </div>
         <div class="navbar-menu">
             <div class="navbar-end">
+                @if ($admin === 1)
+                <div class="navbar-item has-text-info">    
+                    <a href='/admin'>Admin</a>
+                </div>
+                @endif
+                <div class="navbar-item has-text-info">    
+                    <a href='/user/adForm'>Add New Post</a>
+                </div>
+                <div class="navbar-item has-text-info">    
+                    <a href='/user'>Profile</a>
+                </div>
                 <form class="navbar-item has-text-info" method="POST" action="{{ route('logout') }}">
                     @csrf
 
@@ -91,7 +102,7 @@
                 <!-- <td>{{$valueAd->id}} </td> -->
 
                 <td>
-                    <img src="{{ asset('images/'.$valueAd->picture) }}" alt="ad image" width="300">
+                    <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300">
                 </td>
 
                 <td>
