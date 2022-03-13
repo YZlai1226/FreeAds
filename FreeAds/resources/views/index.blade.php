@@ -108,7 +108,7 @@
             <div class="columns">
 
                 <div class="column is-3">
-                    <img src="/storage/pictures/{{$valueAd->picture }}" alt="ad image" width="300">
+                    <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300">
                 </div>
 
                 <div class="column is-7">
