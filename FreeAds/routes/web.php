@@ -28,7 +28,7 @@ use App\Http\Controllers\dashboardController;
 
 Route::get('/', [IndexController::class, 'showAllAds'])->name('index');
 Route::post('/Filter', [IndexController::class, 'showAdsFiltered']);
-Route::post('/Search', [IndexController::class, 'showAllAds']);
+Route::post('/Search', [IndexController::class, 'showResearch']);
 
 
 Auth::routes(['verify' => true]);
@@ -81,7 +81,7 @@ Route::middleware('verified')->group(function () {
 //user dashboard ...
 Route::get('/dashboard', [dashboardController::class, 'showAllAds'])->middleware(['auth'])->name('dashboard');
 Route::post('/dashboard/Filter', [dashboardController::class, 'showAdsFiltered']);
-Route::post('/dashboard/Search', [dashboardController::class, 'showAllAds']);
+Route::post('/dashboard/Search', [dashboardController::class, 'showResearch']);
 
 Route::get('/user', [UserAdsController::class, 'showUser'])->name('user');
 

@@ -5,13 +5,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="admin.css"> 
+    <link rel="stylesheet" href="{{asset('css/user.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="index.css" type="text/css">
     <title>Admin Page</title>
 </head>
 
 <body>
 
-    <table class="table table-hover">
+    <div class="navbar is-white">
+        <div class="navbar-brand">
+            <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
+        </div>
+
+        <div class="text">
+            <p class="is-size-1 has-text-primary px-2 pt-2">FreeAds</p>
+            <p class="is-size-4 has-text-info mb-3">The best way to buy!</p>
+            </p>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                @if (Route::has('login'))
+                @auth
+                <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info">Dashboard</a>
+                @else
+                <a href="{{ route('login') }}" class="navbar-item has-text-info">Log in</a>
+
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="navbar-item has-text-info">Register</a>
+                @endif
+                @endauth
+                @endif
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================  content  =============================== -->
+
+    <table class="table is-narrow is-fullwidth is-hoverable">
+        <thead>
+            <th>All Pending Ads . . .</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </thead>
+
 
         <thead>
 
@@ -33,22 +75,29 @@
 
         </thead>
 
-        <tbody>
-            @foreach($ads as $valueAd)
+        @foreach($ads as $valueAd)
+        <div class="tbody has-text-centered">
+            <tr class="tr">
+
 
             <tr>
 
                 <td>{{$valueAd->id}} </td>
 
                 <td>
-                    <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300px">
+                    <figure class="image is-1by1">
+                        <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300px">
+                    </figure>
                 </td>
 
                 <td>{{$valueAd->title}} </td>
 
                 <td>{{$valueAd->category}} </td>
 
-                <td>{{$valueAd->description}} </td>
+                <td>
+                    <p class="description ellipsis">{{$valueAd->description}}</p>
+                    <a href="#" onclick="myFunction({{$valueAd->id}})" id="show-more{{$valueAd->id}}">Read More</a>
+                </td>
 
                 <td>{{$valueAd->location}} </td>
 
@@ -66,13 +115,17 @@
             </tr>
             @endforeach
 
-        </tbody>
-
     </table>
 
     <!-- ===================================== category table ======================================= -->
 
     <table class="table table-hover">
+        <thead>
+            <th>All categories </th>
+            <th></th>
+            <th></th>
+
+        </thead>
 
         <thead>
 
@@ -118,6 +171,20 @@
 
     <a href='/admin/adForm'>Add New</a>
     <a href='/dashboard'>HOME</a>
+    <script>
+        function myFunction(id) {
+            var button = document.getElementById("show-more" + id);
+            var description = button.previousElementSibling;
+
+            if (button.innerHTML === "Read More") {
+                button.innerHTML = "Show less";
+                description.classList.remove("ellipsis");
+            } else {
+                button.innerHTML = "Read More";
+                description.classList.add("ellipsis");
+            }
+        }
+    </script>
 </body>
 
 </html>
