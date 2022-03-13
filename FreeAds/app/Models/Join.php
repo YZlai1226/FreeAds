@@ -18,7 +18,7 @@ class Join extends Model
     {
         $value = DB::table('users')
             ->join('ads', 'users.id', '=', 'ads.user_id')
-            ->where('users.id', $AdID)
+            ->where('ads.id', $AdID)
             ->get();
         return $value;
     }
