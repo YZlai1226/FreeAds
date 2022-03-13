@@ -5,18 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit your ads </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-<<<<<<< HEAD
+    
     <script src="https://kit.fontawesome.com/84f26d0d3c.js" crossorigin="anonymous"></script>
 
-    <!-- <link rel="stylesheet" href="{{asset('css/index.css')}}" type="text/css"> -->
+    <link rel="stylesheet" href="{{asset('css/user.css')}}" type="text/css">
     <title>Admin Page</title>
-=======
-    <link rel="stylesheet" href="CSS/index.css" type="text/css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
->>>>>>> 5d1da9411c5ca9386e3b1366e1690a00d4117980
 </head>
 
 <div class="navbar is-white">
@@ -53,7 +47,6 @@
     
     <div class="navbar-item">
         <div class="navbar-end">
-<<<<<<< HEAD
             @isset($ads)
             <a href="{{ url('/admin/Category_Management') }}" class="navbar-item has-text-info">Category Management</a>
             <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info">HOME</a>
@@ -62,18 +55,6 @@
             <a href="{{ url('/admin') }}" class="navbar-item has-text-info">Back to Admin</a>
             <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info">HOME</a>
             @endisset
-=======
-            @if (Route::has('login'))
-            @auth
-            @else
-            <a href="{{ route('login') }}" class="navbar-item has-text-info">Log in</a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="navbar-item has-text-info">Register</a>
-            @endif
-            @endauth
-            @endif
->>>>>>> 5d1da9411c5ca9386e3b1366e1690a00d4117980
         </div>
     </div>
 </div>
@@ -111,20 +92,10 @@
 
                         <td>
 
-<<<<<<< HEAD
                             <a href="/admin/edit/{{$value->id}}">
                                 <button type="submit" name="edit_category" value="edit category" class="btn_edit">
                                     <i class="fas fa-edit"></i>
                                 </button>
-=======
-                        <td>{{$valueAd->location}} </td>
-
-                        <td>{{$valueAd->price}}€ </td>
-
-                        <td>
-                            <a href="/admin/verify/{{$valueAd->id}}">
-                                <button class="button mr-3" type="submit" name="verify_ads" value="verify ads" class="btn btn-primary">Verify</button>
->>>>>>> 5d1da9411c5ca9386e3b1366e1690a00d4117980
                             </a>
                             &nbsp;
                             <a href="/admin/delete/{{$value->id}}">
