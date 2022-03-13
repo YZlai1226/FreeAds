@@ -7,18 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="CSS/index.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
 <body>
 
-
-
     <div class="navbar is-white">
         <div class="navbar-brand">
-            <img src="/storage/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
+            <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
         </div>
 
         <div class="text">
@@ -29,14 +26,14 @@
         <div class="navbar-menu">
             <div class="navbar-end">
                 @if ($admin === 1)
-                <div class="navbar-item has-text-info">    
+                <div class="navbar-item has-text-info">
                     <a href='/admin'>Admin</a>
                 </div>
                 @endif
-                <div class="navbar-item has-text-info">    
+                <div class="navbar-item has-text-info">
                     <a href='/user/adForm'>Add New Post</a>
                 </div>
-                <div class="navbar-item has-text-info">    
+                <div class="navbar-item has-text-info">
                     <a href='/user'>Profile</a>
                 </div>
                 <form class="navbar-item has-text-info" method="POST" action="{{ route('logout') }}">
@@ -96,22 +93,24 @@
     <!-- ============================== SHOW ADS ================================ -->
 
     @foreach($Ads as $valueAd)
-    <table class="table is-narrow is-fullwidth is-hoverable">
+    <table class="table mx-auto is-striped is-hoverable">
         <div class="tbody">
             <tr class="tr">
-                <!-- <td>{{$valueAd->id}} </td> -->
 
                 <td>
-                    <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300">
+                    <img src="/storage/pictures/{{$valueAd->picture }}" alt="ad image" width="300">
                 </td>
 
+                </td>
                 <td>
                     <strong>{{$valueAd->title}}</strong> <br>
 
                     <em>{{$valueAd->category}}</em> <br>
                     {{$valueAd->location}} </br>
 
-                    {{$valueAd->description}} <br>
+                    {{Str::limit($valueAd->description, 150, $end='...')}} <br>
+                    <a href="/ad/{{$valueAd->id}}" class="button" data-toggle="modal">See more</a>
+
                 </td>
 
                 <td><br>{{$valueAd->price}}€
@@ -123,6 +122,5 @@
         </div>
 
     </table>
-    </div>
 
 </html>
