@@ -14,12 +14,63 @@
 
 table, td, th {
 
-    text-align:center;
     width:14.2%;
     padding:5px;
+    height:30px;
   }
 
-  table {
+  /* table {
     width: 400px;
     border-collapse: collapse;
   }
+
+  .two_table_row {
+    margin-left:-5px;
+    margin-right:-5px;
+  }
+
+  .column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+  }
+
+  .two_table_row::after {
+    content: "";
+    clear: both;
+    display: table;
+  } */
+
+  .AddButton {
+    height:30px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .btn_edit {
+    background-color: transparent;
+    border: none;
+    color: #2f4f4f;
+    cursor: pointer;
+    font-size: medium;
+  }
+
+  .btn_delete {
+    background-color: transparent;
+    border: none;
+    color: #ff1a1a;
+    cursor: pointer;
+    font-size: medium;
+    font-weight: bold;
+  }
+
+  .navbar-item .has-text-info {
+    background-color: transparent;
+    border: none;
+    font-size: medium;
+    cursor: pointer;
+  }
+
+  .navbar-item .has-text-info:hover {
+    background-color: #f2f2f2;
+  } 

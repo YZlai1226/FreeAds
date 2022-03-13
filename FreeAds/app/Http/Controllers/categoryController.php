@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categories;
+use App\Models\Ads;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -11,10 +12,13 @@ use App\Http\Controllers\adminController;
 
 class categoryController extends Controller
 {
-    // public function ShowCategories() {
-    //     $category = Categories::getCategoryData();
-    //     return view('admin')->with('category', $category);
-    // }
+    public function ShowCategories() {
+        $category = Categories::getCategoryData();
+        error_log("======================= category controller function1 " . $category);
+        // $ads = Ads::where('admin_verified', '0')->paginate(3);
+        return view('admin', ['category' => $category]);
+        // return view('admin')->with('category', $category);
+    }
 
     public function InsertForm() {
         // error_log("INSIDE InsertForm");

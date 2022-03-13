@@ -68,7 +68,7 @@ Route::middleware('admin')->group(function () {
     Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
     Route::get('/admin/verify/{adId}', [adsController::class, 'VerifyAd']);
     Route::post('admin/editConfirm', [categoryController::class, 'EditCategory']);
-
+    Route::get('/admin/Category_Management', [categoryController::class, 'ShowCategories']);
 });
 
 Route::middleware('verified')->group(function () {

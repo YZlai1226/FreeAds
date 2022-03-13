@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/user.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/84f26d0d3c.js" crossorigin="anonymous"></script>
+
     <!-- <link rel="stylesheet" href="{{asset('css/index.css')}}" type="text/css"> -->
     <title>Admin Page</title>
 </head>
@@ -21,222 +23,157 @@
     </div>
     <div class="navbar-item">
         <div class="navbar-end">
-            @if (Route::has('login'))
-            @auth
+            @isset($ads)
+            <a href="{{ url('/admin/Category_Management') }}" class="navbar-item has-text-info">Category Management</a>
             <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info">HOME</a>
-            @else
-            <a href="{{ route('login') }}" class="navbar-item has-text-info">Log in</a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="navbar-item has-text-info">Register</a>
-            @endif
-            @endauth
-            @endif
+            @endisset
+            @isset($category)
+            <a href="{{ url('/admin') }}" class="navbar-item has-text-info">Back to Admin</a>
+            <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info">HOME</a>
+            @endisset
         </div>
     </div>
 </div>
 
 <body>
-    <!-- <div class="level">
+    <!-- ===================================== category table ======================================= -->
+    @if (isset($category))
+    <nav class="level">
         <div class="level-item">
-            <p class="is-size-3 has-text-danger px-2 pt-2 ">Administration</p>
-        </div>
-    </div> -->
-    <!-- 
-
-    <div class="navbar is-white">
-        <div class="navbar-brand">
-            <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
-        </div> -->
-
-    <!-- <div class="text">
-            <p class="is-size-1 has-text-primary px-2 pt-2">FreeAds</p>
-            <p class="is-size-4 has-text-info mb-3">The best way to buy!</p>
-            </p>
-        </div> -->
-    <!-- <div class="navbar-menu">
-        <div class="navbar-end">
-            @if (Route::has('login'))
-            @auth
-            <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info">HOME</a>
-            @else
-            <a href="{{ route('login') }}" class="navbar-item has-text-info">Log in</a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="navbar-item has-text-info">Register</a>
-            @endif
-            @endauth
-            @endif
-        </div>
-    </div> -->
-    
-
-    <!-- ================================  content  =============================== -->
-
-    <table class="table is-narrow is-fullwidth is-hoverable">
-        <thead>
-            <th>All Pending Ads . . .</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </thead>
-        <!-- 
-            <div class="level">
-                <div class="level-item">
-                    <table class="table table-hover"> -->
-
-        <thead>
-            <tr class="tr">
-
-                <th>id</th>
-
-                <th>picture(s)</th>
-
-                <th>title</th>
-
-                <th>category</th>
-
-                <th>description</th>
-
-                <th>location</th>
-
-                <th>price</th>
-
-                <th>action</th>
-
-            </tr>
-        </thead>
-
-        @foreach($ads as $valueAd)
-        <div class="tbody has-text-centered">
-            <tr class="tr">
+            <table class="table is-striped is-hoverable">
+                <thead>
+                    <th colspan="2">All categories </th>
+                    <th>
+                        <a href='/admin/adForm'>
+                            <button class="AddButton mr-3 has-background-info" type="submit" name="add_category" value="add_category">
+                                <strong>ADD NEW</strong>
+                            </button>
+                        </a>
+                    </th>
+                </thead>
+                <thead>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>action</th>
+                </thead>
 
                 <tbody>
+                    @foreach($category as $value)
+
                     <tr>
 
-                        <td>{{$valueAd->id}} </td>
+                        <td>{{$value->id}} </td>
+
+                        <td>{{$value->name}} </td>
 
                         <td>
-                            <figure class="image is-1by1">
-                                <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300px">
-                            </figure>
-                        </td>
 
-                        <td>{{$valueAd->title}} </td>
-
-                        <td>{{$valueAd->category}} </td>
-
-                        <td>
-                            <p class="description ellipsis">{{$valueAd->description}}</p>
-                            <a href="#" onclick="myFunction({{$valueAd->id}})" id="show-more{{$valueAd->id}}">Read More</a>
-                        </td>
-
-                        <td>{{$valueAd->location}} </td>
-
-                        <td>{{$valueAd->price}}€ </td>
-
-                        <td>
-                            <a href="/admin/verify/{{$valueAd->id}}">
-                                <button type="submit" name="verify_ads" value="verify ads" class="btn btn-primary">Verify</button>
+                            <a href="/admin/edit/{{$value->id}}">
+                                <button type="submit" name="edit_category" value="edit category" class="btn_edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
                             </a>
-                            <!-- <form action="/admin" method="post">
-                <button type="submit" name="delete_category" value="delete category" class="btn btn-primary">Delete</button>
-            </form> -->
+                            &nbsp;
+                            <a href="/admin/delete/{{$value->id}}">
+                                <button type="submit" name="delete_category" value="delete category" class="btn_delete">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </a>
+
                         </td>
 
                     </tr>
                     @endforeach
+
                 </tbody>
 
-    </table>
-    </div>
-    </div>
-    <!-- ===================================== category table ======================================= -->
-    <!-- <div class="level">
-            <div class="level-item">
-                <table class="table table-hover"> -->
-
-    <!-- <thead> -->
-
-    <table class="table table-hover">
-        <thead>
-            <th>All categories </th>
-            <th></th>
-            <th>
-                <a href='/admin/adForm'>
-                    <button class="button mr-3" type="submit" name="add_category" value="add_category"> Add New </button>
-                </a>
-            </th>
-
-        </thead>
-        <th>id</th>
-
-        <th>name</th>
-
-        <th>action</th>
-
-        </thead>
-
-        <tbody>
-            @foreach($category as $value)
-
-            <tr>
-
-                <td>{{$value->id}} </td>
-
-                <td>{{$value->name}} </td>
-
-                <td>
-                    <!-- <form action="/category_edit" method="post"> -->
-                    <a href="/admin/edit/{{$value->id}}">
-                        <button type="submit" name="edit_category" value="edit category" class="btn btn-primary">Edit</button>
-                    </a>
-                    <!-- </form> -->
-                    <a href="/admin/delete/{{$value->id}}">
-                        <button type="submit" name="delete_category" value="delete category" class="btn btn-primary">Delete</button>
-                    </a>
-                    <!-- <form action="/admin" method="post">
-                        <button type="submit" name="delete_category" value="delete category" class="btn btn-primary">Delete</button>
-                    </form> -->
-                </td>
-
-            </tr>
-            @endforeach
-
-        </tbody>
-
-    </table>
-
-
-    <!-- 
-            <a href='/admin/adForm'>Add New</a>
-            <a href='/dashboard'>HOME</a> -->
-
-    <!-- <div class="level">
-        <div class="level-item">
-            <a href='/dashboard'>
-                <button class="button mr-3" type="submit" name="edit_password" value="edit_password">HOME</button>
-            </a>
+            </table>
         </div>
-    </div> -->
-    <script>
-        function myFunction(id) {
-            var button = document.getElementById("show-more" + id);
-            var description = button.previousElementSibling;
 
-            if (button.innerHTML === "Read More") {
-                button.innerHTML = "Show less";
-                description.classList.remove("ellipsis");
-            } else {
-                button.innerHTML = "Read More";
-                description.classList.add("ellipsis");
-            }
-        }
-    </script>
+        <!-- ================================  content  =============================== -->
+        @else
+
+        <thead>
+            <th colspan="5">All Pending Ads . . .</th>
+        </thead>
+        <section class="section">
+            <div class="container">
+                <!-- <table class="table is-striped is-hoverable"> -->
+
+                <div class="columns">
+                    <div class="column is-1">id</div>
+                    <div class="column is-2">picture</div>
+                    <div class="column is-5">title</div>
+                    <div class="column is-1">price</div>
+                    <div class="column is-1">action</div>
+                </div>
+
+            </div>
+
+            <div class="container">
+                @foreach($ads as $valueAd)
+                <div class="columns">
+
+
+                    <div class="column is-1">{{$valueAd->id}} </div>
+                    <div class="column is-2">
+                        <figure class="image is-128x128">
+                            <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300px">
+                        </figure>
+                    </div>
+                    <div class="column is-5">
+                        <strong>{{$valueAd->title}}</strong><br>
+                        <em>{{$valueAd->category}}</em><br>
+                        {{$valueAd->location}}<br>
+
+                        <p class="description ellipsis">{{$valueAd->description}}</p>
+                        <a href="#" onclick="myFunction({{$valueAd->id}})" id="show-more{{$valueAd->id}}">Read More</a>
+                    </div>
+                    <div class="column is-1">{{$valueAd->price}}€ </div>
+                    <div class="column is-1">
+                        <a href="/admin/verify/{{$valueAd->id}}">
+                            <span class="icon-text has-text-success">
+                                <span class="icon">
+                                    <i class="fas fa-check-square"></i>
+                                </span>
+                                <span>Verify</span>
+                            </span>
+                            </button>
+                        </a>
+                    </div>
+
+
+                </div>
+                @endforeach
+            </div>
+        </section>
+        <!-- </table> -->
+
+
+
+
+
+
+        <div class="level-item">
+            {{$ads->links()}}
+            <div>
+
+
+                @endif
+                <script>
+                    function myFunction(id) {
+                        var button = document.getElementById("show-more" + id);
+                        var description = button.previousElementSibling;
+
+                        if (button.innerHTML === "Read More") {
+                            button.innerHTML = "Show less";
+                            description.classList.remove("ellipsis");
+                        } else {
+                            button.innerHTML = "Read More";
+                            description.classList.add("ellipsis");
+                        }
+                    }
+                </script>
 
 </body>
 

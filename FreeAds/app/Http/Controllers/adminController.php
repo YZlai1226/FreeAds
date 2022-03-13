@@ -13,14 +13,12 @@ class adminController extends Controller
 {
     public $timestamps = true;
     public function showAdsAndCategories() {
-        $ads = Ads::getAddsData();
-        $category = Categories::getCategoryData();
-        return view('admin', ['ads' => $ads, 'category' => $category]);
+        $ads = Ads::where('admin_verified', '0')->simplePaginate(3);
+        return view('admin', ['ads' => $ads]);
     }
 
-    // public function ShowCategories() {
-    //     // error_log("INSIDE ShowCategory");
-    //     $category = Categories::getCategoryData();
-    //     return view('admin')->with('category', $category);
-    // }
+    public function ShowCategories() {
+        $category = Categories::getCategoryData();
+        return view('admin', ['category' => $category]);
+    }
 }
