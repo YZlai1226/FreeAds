@@ -20,14 +20,9 @@
 
         <div class="text">
             <p class="is-size-1 has-text-primary px-2 pt-2 mr-6">FreeAds</p>
-            <p class="is-size-4 has-text-info mb-3 mr-6">The best way to buy!</p>
+            <p class="is-size-4 has-text-info mb-3 mr-6">The best way to buy and sell!</p>
             </p>
         </div>
-        <!-- <div class="text">
-            <a href='/user/adForm'><img src="/images/add.png" alt="Logo" style="max-height: 70px" class="mt-5 ml-6 mr-3">
-                <p class="is-size-4 has-text-info">Add New Post</p>
-            </a>
-        </div> -->
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" type="text/css" rel="stylesheet">
 
@@ -41,7 +36,7 @@
         <div class="columns is-mobile is-centered is-vcentered">
             <div class="column">
                 <a href='/user/adForm'>
-                    <span class="is-size-5 mt-1 has-text-info">Add New Post</span>
+                    <span class="is-size-5 mt-1 has-text-info">  &nbsp;&nbsp;&nbsp; Create a New Ad</span>
                 </a>
             </div>
         </div>
@@ -51,26 +46,24 @@
 
         </div>
         </p>
-        
+
         <div class="navbar-menu">
             <div class="navbar-end">
                 @if ($admin === 1)
                 <div class="navbar-item has-text-info">
-                    <a href='/admin'>Admin</a>
+                    <a href='/admin'><img src="/images/admin.png" alt="Logo" style="max-height: 70px" class="mt-5 " alt=""></a>
                 </div>
                 @endif
                 <div class="navbar-item has-text-info">
-                    <a href='/user/adForm'>Add New Post</a>
-                </div>
-                <div class="navbar-item has-text-info">
-                    <a href='/user'>Profile</a>
+                    <a href='/user'><img src="/images/user.png" alt="Logo" style="max-height: 70px" class="mt-5 " alt=""></a>
                 </div>
                 <form class="navbar-item has-text-info" method="POST" action="{{ route('logout') }}">
                     @csrf
 
                     <a href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        <!-- {{ __('Log Out') }} -->
+                        <img src="/images/exit.png" alt="Logo" style="max-height: 70px" class="mt-5 mr-5 " alt="">
                     </a>
                 </form>
             </div>
