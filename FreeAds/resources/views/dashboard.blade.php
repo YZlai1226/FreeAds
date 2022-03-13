@@ -27,19 +27,19 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" type="text/css" rel="stylesheet">
 
         <div class="columns is-mobile is-centered is-vcentered">
-            <div class="column">
-                <a href='/user/adForm'>
-                    <img src="/images/add.png" alt="Logo" style="max-height: 70px" class="mt-5 ml-6 " alt="">
-                </a>
-            </div>
+        <div class="column">
+            <a href='/user/adForm'>
+                <img src="/images/add.png" alt="Logo" style="max-height: 70px" class="mt-5 ml-6 mb-3 " alt="">
+            </a>
         </div>
-        <div class="columns is-mobile is-centered is-vcentered">
-            <div class="column">
-                <a href='/user/adForm'>
-                    <span class="is-size-5 mt-1 has-text-info">  &nbsp;&nbsp;&nbsp; Create a New Ad</span>
-                </a>
-            </div>
+    </div>
+    <div class="columns is-mobile is-centered is-vcentered">
+        <div class="column">
+            <a href='/user/adForm'>
+                <span class="is-size-5 mt-1 has-text-info"> &nbsp;&nbsp;&nbsp; Create a New Ad</span>
+            </a>
         </div>
+    </div>
 
         <p class="is-size-5 has-text-info has-text-centered">
         <div class="navbar-item has-text-info">

@@ -24,7 +24,7 @@
     <div class="columns is-mobile is-centered is-vcentered">
         <div class="column">
             <a href='/user/adForm'>
-                <img src="/images/add.png" alt="Logo" style="max-height: 70px" class="mt-5 ml-6 " alt="">
+                <img src="/images/add.png" alt="Logo" style="max-height: 70px" class="mt-5 ml-6 mb-3 " alt="">
             </a>
         </div>
     </div>
