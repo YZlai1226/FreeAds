@@ -16,7 +16,7 @@
 <body>
     <div class="navbar is-white">
         <div class="navbar-brand">
-            <img src="/images/Logo.png" alt="Logo" style="max-height: 70px" class="mt-5 mx-3">
+            <img src="/images/Logo.png" alt="Logo" style="max-height: 50px" class="mt-5 mx-3">
 
             <div class="text">
                 <p class="is-size-1 has-text-primary px-2 pt-2 mr-6">FreeAds</p>
@@ -33,7 +33,7 @@
         <div class="navbar-menu" id="nav-links">
             <div class="navbar-end">
                 <div class="navbar-item has-text-info">
-                    <a href='/dashboard/'><img src="/images/accueil.png" alt="Logo" style="max-height: 70px" class="mt-5 " alt=""></a>
+                    <a href='/dashboard/'><img src="/images/accueil.png" alt="Logo" style="max-height: 50px" class="mt-5 " alt=""></a>
                 </div>
 
                 <form class="navbar-item has-text-info" method="POST" action="{{ route('logout') }}">
@@ -41,7 +41,7 @@
                     <a href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                         <!-- {{ __('Log Out') }} -->
-                        <img src="/images/exit.png" alt="Logo" style="max-height: 70px" class="mt-5 mr-5 " alt="">
+                        <img src="/images/exit.png" alt="Logo" style="max-height: 50px" class="mt-5 mr-5 " alt="">
                     </a>
                 </form>
             </div>
@@ -91,7 +91,11 @@
                     <p class="is-size-2 has-text-primary px-2 pb-5 has-text-centered">Your Ads</p>
         
                         <a href='/user/adForm'>
+<<<<<<< HEAD
+                            <img src="/images/add.png" alt="Logo" style="max-height: 50px" class="ml-6 " alt="">
+=======
                             <img src="/images/add.png" alt="Logo" style="max-height: 70px" class="ml-6 " alt="">
+>>>>>>> 4ad6fb83ebd16cb3de5380fc3846cdb5f62d2284
                         </a>
                 </div>
                 @if(count($UserAd) == 0)
