@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Routes;
 use App\User;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\AdController;
 
 
 /*
@@ -30,11 +31,11 @@ Route::get('/', [IndexController::class, 'showAllAds'])->name('index');
 Route::post('/Filter', [IndexController::class, 'showAdsFiltered']);
 Route::post('/Search', [IndexController::class, 'showResearch']);
 
+Route::get('/ad/{id}', [AdController::class, 'showAd']);
 
 Auth::routes(['verify' => true]);
 
 require __DIR__.'/auth.php';
-
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -53,8 +54,6 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-
-
 Route::middleware('admin')->group(function () {
 
     // admin_category ...
@@ -72,16 +71,13 @@ Route::middleware('admin')->group(function () {
 
 });
 
-
-
-
-
 Route::middleware('verified')->group(function () {
-//user dashboard ...
-Route::get('/dashboard', [dashboardController::class, 'showAllAds'])->middleware(['auth'])->name('dashboard');
-Route::post('/dashboard/Filter', [dashboardController::class, 'showAdsFiltered']);
-Route::post('/dashboard/Search', [dashboardController::class, 'showResearch']);
-
+    //user dashboard ...
+    
+    Route::get('/dashboard', [dashboardController::class, 'showAllAds'])->middleware(['auth'])->name('dashboard');
+    Route::post('/dashboard/Filter', [dashboardController::class, 'showAdsFiltered']);
+    Route::post('/dashboard/Search', [dashboardController::class, 'showResearch']);
+    
 Route::get('/user', [UserAdsController::class, 'showUser'])->name('user');
 
 Route::get('/user/userEdit', [UserController::class, 'EditUser']);
