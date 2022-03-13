@@ -93,14 +93,11 @@
         <table class="table is-narrow is-fullwidth is-hoverable">
             <div class="tbody">
                 <tr class="tr">
-                    <!-- <td>{{$valueAd->id}} </td> -->
 
                     <td>
-                        <img src="/storage/{{$valueAd->picture }}" alt="ad image" width="300">
+                        <img src="/storage/pictures/{{$valueAd->picture }}" alt="ad image" width="300">
                     </td>
 
-                    {{Str::limit($valueAd->description, 150, $end='...')}} <br>
-                    <a href="/ad/{{$valueAd->id}}" class="button" data-toggle="modal">See more</a>
                 </td>
                     <td>
                         <strong>{{$valueAd->title}}</strong> <br>
@@ -109,7 +106,7 @@
                         {{$valueAd->location}} </br>
 
                         {{Str::limit($valueAd->description, 150, $end='...')}} <br>
-                        <a href="{{ URL::to('/ad/{$ad->id}') }}" class="button" data-toggle="modal">See more</a>
+                        <a href="/ad/{{$valueAd->id}}" class="button" data-toggle="modal">See more</a>
 
                     </td>
 
