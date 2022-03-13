@@ -27,11 +27,7 @@
             <div class="navbar-end">
                 @if (Route::has('login'))
                 @auth
-<<<<<<< HEAD
-                <a href="{{ url('/dashboard') }}" class="navbar-item has-text-info"><img src="/images/accueil.png" alt="Logo" style="max-height: 70px" class="mr-3"></a>
-=======
                 <a href="{{ url('/dashboard') }}" class="navbar-item mr-5 has-text-info">Dashboard</a>
->>>>>>> ef1ac4bf7e5e900d2edae06feb4efc72b3f26c8f
                 @else
                 <a href="{{ route('login') }}" class="navbar-item mr-5 has-text-info">Log in</a>
 
